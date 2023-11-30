@@ -6,6 +6,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.List;
 import java.util.UUID;
 
@@ -18,9 +21,12 @@ public class UserController {
     @Autowired
     private final UserService userService;
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
+
     @GetMapping
     @CrossOrigin
     public List<User> getAllUsers() {
+        LOGGER.info("Getting all users: " + userService.getAllUsers());
         return userService.getAllUsers();
     }
 

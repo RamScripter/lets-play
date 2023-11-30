@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+        http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd">
+
+    <changeSet  id="1"  author="Marie-KD">
+        <createTable  tableName="user">
+            <column  name="id"  type="UUID">
+                <constraints  primaryKey="true"  nullable="false"/>
+            </column>
+            <column  name="name"  type="varchar(50)">
+                <constraints  nullable="false"/>
+            </column>
+            <column  name="email"  type="varchar(50)">
+                <constraints  nullable="false"/>
+            </column>
+            <column  name="password"  type="varchar(50)">
+                <constraints  nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable  tableName="user_type">
+            <column  name="id"  type="integer">
+                <constraints  primaryKey="true"  nullable="false"/>
+            </column>
+            <column  name="type"  type="varchar(50)">
+                <constraints  nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable  tableName="musician_type">
+            <column  name="id"  type="integer">
+                <constraints  primaryKey="true"  nullable="false"/>
+            </column>
+            <column  name="type"  type="varchar(50)">
+                <constraints  nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable  tableName="style">
+            <column  name="id"  type="integer">
+                <constraints  primaryKey="true"  nullable="false"/>
+            </column>
+            <column  name="style"  type="varchar(50)">
+                <constraints  nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable  tableName="location">
+            <column  name="id"  type="integer">
+                <constraints  primaryKey="true"  nullable="false"/>
+            </column>
+            <column  name="region"  type="varchar(50)">
+                <constraints  nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable  tableName="ad">
+            <column  name="id"  type="UUID">
+                <constraints  primaryKey="true"  nullable="false"/>
+            </column>
+            <column  name="created_at"  type="date">
+                <constraints  nullable="false"/>
+            </column>
+            <column  name="posted_by"  type="UUID">
+                <constraints  nullable="false"/>
+            </column>
+            <column  name="title"  type="varchar(50)">
+                <constraints  nullable="false"/>
+            </column>
+            <column  name="seeking_type"  type="integer">
+                <constraints  nullable="false"/>
+            </column>
+            <column  name="seeking_musician_type"  type="integer">
+                <constraints  nullable="false"/>
+            </column>
+            <column  name="image"  type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column  name="style_type"  type="integer">
+                <constraints  nullable="false"/>
+            </column>
+            <column  name="location_region"  type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column  name="location_city"  type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column  name="description"  type="varchar(100)">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2" author="Marie-KD">
+        <addForeignKeyConstraint
+                baseTableName="ad"
+                baseColumnNames="posted_by"
+                referencedTableName="user"
+                referencedColumnNames="id"
+                constraintName="fk_user_id"
+        />
+        <addForeignKeyConstraint
+                baseTableName="ad"
+                baseColumnNames="seeking_type"
+                referencedTableName="user_type"
+                referencedColumnNames="id"
+                constraintName="fk_seeking_user_type"
+        />
+        <addForeignKeyConstraint
+                baseTableName="ad"
+                baseColumnNames="seeking_musician_type"
+                referencedTableName="musician_type"
+                referencedColumnNames="id"
+                constraintName="fk_seeking_musician_type"
+        />
+        <addForeignKeyConstraint
+                baseTableName="ad"
+                baseColumnNames="style_type"
+                referencedTableName="style"
+                referencedColumnNames="id"
+                constraintName="fk_style_type"
+        />
+        <addForeignKeyConstraint
+                baseTableName="ad"
+                baseColumnNames="location_region"
+                referencedTableName="location"
+                referencedColumnNames="id"
+                constraintName="fk_region_id"
+        />
+    </changeSet>
+
+    <changeSet id="3" author="Marie-KD">
+        <addAutoIncrement columnDataType="int"
+                          columnName="id"
+                          defaultOnNull="false"
+                          generationType="ALWAYS"
+                          incrementBy="1"
+                          schemaName="public"
+                          tableName="user_type"/>
+        <addAutoIncrement columnDataType="int"
+                          columnName="id"
+                          defaultOnNull="false"
+                          generationType="ALWAYS"
+                          incrementBy="1"
+                          schemaName="public"
+                          tableName="musician_type"/>
+        <addAutoIncrement columnDataType="int"
+                          columnName="id"
+                          defaultOnNull="false"
+                          generationType="ALWAYS"
+                          incrementBy="1"
+                          schemaName="public"
+                          tableName="style"/>
+        <addAutoIncrement columnDataType="int"
+                          columnName="id"
+                          defaultOnNull="false"
+                          generationType="ALWAYS"
+                          incrementBy="1"
+                          schemaName="public"
+                          tableName="location"/>
+    </changeSet>
+
+
+
+
+</databaseChangeLog>
+

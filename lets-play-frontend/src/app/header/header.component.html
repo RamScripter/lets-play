@@ -1,0 +1,26 @@
+<header>
+    <nav id="header" class="flex justify-between items-center pl-8 pr-12 py-2 bg-black">
+        <img src="assets/images/Logo.png" alt="Logo Let's Play" class="h-20">
+
+        <!-- TO DO : ranger les liens dans une div sans casser l'affichage -->
+        <!-- TO DO : underline seulement si sur la page concernée -->
+        <a routerLink="home" routerLinkActive="underline" class="text-white text-xl hover:text-red-600">ACCUEIL</a>
+        <a routerLink="search" routerLinkActive="underline" class="text-white text-xl hover:text-red-600">RECHERCHER</a>
+        <a routerLink="login" routerLinkActive="underline" class="text-white text-xl hover:text-red-600">CONNEXION / INSCRIPTION</a>
+
+        <div class="lg:hidden">
+            <!-- Bouton pour le menu dépliant (burger menu) -->
+            <button id="burger-menu" class="text-white focus:outline-none">
+                <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+        </div>
+        <!-- TO DO : créer le menu dépliant pour les petits écrans -->
+    </nav>
+    <!-- TO DO : adfichage conditionné au fait d'être sur la page d'accueil -->
+    <div id="description" *ngIf="showDescription" class="bg-backgroundTile text-center px-2 py-2" >
+        LET’S PLAY, c’est LA plateforme qui met en relation les musiciens et groupes de metal.<br>
+        Parcours nos dernières annonces et trouve tes futurs bandmates !
+    </div>
+</header>

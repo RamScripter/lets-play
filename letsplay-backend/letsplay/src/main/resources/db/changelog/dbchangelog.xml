@@ -23,9 +23,12 @@
             <column  name="password"  type="varchar(50)">
                 <constraints  nullable="false"/>
             </column>
+            <column  name="role"  type="integer">
+                <constraints  nullable="false"/>
+            </column>
         </createTable>
 
-        <createTable  tableName="user_type">
+        <createTable  tableName="user_roles">
             <column  name="id"  type="integer">
                 <constraints  primaryKey="true"  nullable="false"/>
             </column>
@@ -74,9 +77,6 @@
             <column  name="title"  type="varchar(50)">
                 <constraints  nullable="false"/>
             </column>
-            <column  name="seeking_type"  type="integer">
-                <constraints  nullable="false"/>
-            </column>
             <column  name="seeking_musician_type"  type="integer">
                 <constraints  nullable="false"/>
             </column>
@@ -100,19 +100,20 @@
 
     <changeSet id="2" author="Marie-KD">
         <addForeignKeyConstraint
+                baseTableName="app_user"
+                baseColumnNames="role"
+                referencedTableName="user_roles"
+                referencedColumnNames="id"
+                constraintName="fk_user_role_id"
+        />
+        <addForeignKeyConstraint
                 baseTableName="ad"
                 baseColumnNames="posted_by"
                 referencedTableName="app_user"
                 referencedColumnNames="id"
                 constraintName="fk_app_user_id"
         />
-        <addForeignKeyConstraint
-                baseTableName="ad"
-                baseColumnNames="seeking_type"
-                referencedTableName="user_type"
-                referencedColumnNames="id"
-                constraintName="fk_seeking_user_type"
-        />
+
         <addForeignKeyConstraint
                 baseTableName="ad"
                 baseColumnNames="seeking_musician_type"
@@ -137,13 +138,6 @@
     </changeSet>
 
     <changeSet id="3" author="Marie-KD">
-        <addAutoIncrement columnDataType="int"
-                          columnName="id"
-                          defaultOnNull="false"
-                          generationType="ALWAYS"
-                          incrementBy="1"
-                          schemaName="public"
-                          tableName="user_type"/>
         <addAutoIncrement columnDataType="int"
                           columnName="id"
                           defaultOnNull="false"

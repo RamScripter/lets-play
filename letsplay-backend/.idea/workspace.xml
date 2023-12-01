@@ -5,10 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="028f9341-95c3-4bea-82f1-57fea0833f4a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/authentication/AuthenticationService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/authentication/WebSecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/authentication/controller/AuthenticationController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/controllers/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/controllers/WebSecurityConfig.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/entities/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/entities/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/entities/UserType.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/letsplay/src/main/resources/db/changelog/dbchangelog.xml" beforeDir="false" afterPath="$PROJECT_DIR$/letsplay/src/main/resources/db/changelog/dbchangelog.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -91,7 +94,7 @@
       <workItem from="1701333383010" duration="1809000" />
       <workItem from="1701338088470" duration="6151000" />
       <workItem from="1701344681157" duration="5701000" />
-      <workItem from="1701357171091" duration="373000" />
+      <workItem from="1701357171091" duration="8083000" />
     </task>
     <servers />
   </component>

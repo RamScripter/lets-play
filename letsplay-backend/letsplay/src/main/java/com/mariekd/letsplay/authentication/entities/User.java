@@ -1,4 +1,4 @@
-package com.mariekd.letsplay.entities;
+package com.mariekd.letsplay.authentication.entities;
 
 import jakarta.persistence.*;
 import java.util.UUID;
@@ -27,7 +27,8 @@ public class User {
     @Column(length = 50, nullable = false, name="password")
     private String password;
 
-    @Column(length = 50, nullable = false, name="role")
-    private int role;
+    @ManyToOne
+    @JoinColumn(nullable = false, name="role")
+    private Role role;
 
 }

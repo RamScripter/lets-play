@@ -99,6 +99,51 @@
     </changeSet>
 
     <changeSet id="2" author="Marie-KD">
+        <addAutoIncrement columnDataType="int"
+                          columnName="id"
+                          defaultOnNull="false"
+                          generationType="ALWAYS"
+                          incrementBy="1"
+                          schemaName="public"
+                          tableName="user_roles"/>
+
+        <insert tableName="user_roles">
+            <column name="type" value="user" />
+        </insert>
+        <insert tableName="user_roles">
+            <column name="type" value="admin" />
+        </insert>
+    </changeSet>
+
+    <changeSet id="3" author="Marie-KD">
+        <addAutoIncrement columnDataType="int"
+                          columnName="id"
+                          defaultOnNull="false"
+                          generationType="ALWAYS"
+                          incrementBy="1"
+                          schemaName="public"
+                          tableName="musician_type"/>
+        <insert tableName="musician_type">
+            <column name="type" value="vocalist" />
+        </insert>
+        <insert tableName="musician_type">
+            <column name="type" value="guitar" />
+        </insert>
+        <insert tableName="musician_type">
+            <column name="type" value="bass" />
+        </insert>
+        <insert tableName="musician_type">
+            <column name="type" value="drums" />
+        </insert>
+        <insert tableName="musician_type">
+            <column name="type" value="synths" />
+        </insert>
+        <insert tableName="musician_type">
+            <column name="type" value="miscelleanous" />
+        </insert>
+    </changeSet>
+
+    <changeSet id="4" author="Marie-KD">
         <addForeignKeyConstraint
                 baseTableName="app_user"
                 baseColumnNames="role"
@@ -137,14 +182,7 @@
         />
     </changeSet>
 
-    <changeSet id="3" author="Marie-KD">
-        <addAutoIncrement columnDataType="int"
-                          columnName="id"
-                          defaultOnNull="false"
-                          generationType="ALWAYS"
-                          incrementBy="1"
-                          schemaName="public"
-                          tableName="musician_type"/>
+    <changeSet id="5" author="Marie-KD">
         <addAutoIncrement columnDataType="int"
                           columnName="id"
                           defaultOnNull="false"
@@ -160,9 +198,6 @@
                           schemaName="public"
                           tableName="location"/>
     </changeSet>
-
-
-
 
 </databaseChangeLog>
 

@@ -1,6 +1,6 @@
 package com.mariekd.letsplay.services.implementation;
 
-import com.mariekd.letsplay.entities.User;
+import com.mariekd.letsplay.authentication.entities.User;
 import com.mariekd.letsplay.repositories.UserRepository;
 import com.mariekd.letsplay.services.UserService;
 import lombok.RequiredArgsConstructor;

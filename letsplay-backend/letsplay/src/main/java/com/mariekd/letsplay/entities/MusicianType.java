@@ -14,7 +14,8 @@ import lombok.*;
 public class MusicianType {
     @Id
     @Column(updatable = false, nullable = false)
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(length = 50, nullable = false,  name="type")
     private String type;

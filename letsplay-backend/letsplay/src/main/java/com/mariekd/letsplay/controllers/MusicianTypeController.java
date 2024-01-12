@@ -1,5 +1,6 @@
 package com.mariekd.letsplay.controllers;
 
+import com.mariekd.letsplay.authentication.controller.UserController;
 import com.mariekd.letsplay.entities.MusicianType;
 import com.mariekd.letsplay.services.MusicianTypeService;
 import lombok.RequiredArgsConstructor;

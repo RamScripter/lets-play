@@ -24,7 +24,6 @@ public class Role {
     @Column(length = 50, nullable = false, name="type")
     private String role;
 
-    @OneToMany(mappedBy = "role")
+    @OneToMany(mappedBy = "role", fetch = FetchType.EAGER)
     private List<User> users;
-
 }

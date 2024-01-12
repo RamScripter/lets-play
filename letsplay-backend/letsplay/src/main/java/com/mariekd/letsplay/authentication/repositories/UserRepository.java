@@ -1,4 +1,4 @@
-package com.mariekd.letsplay.repositories;
+package com.mariekd.letsplay.authentication.repositories;
 
 import com.mariekd.letsplay.authentication.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;

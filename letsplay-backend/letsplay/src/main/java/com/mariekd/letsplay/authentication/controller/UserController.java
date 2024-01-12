@@ -1,7 +1,7 @@
-package com.mariekd.letsplay.controllers;
+package com.mariekd.letsplay.authentication.controller;
 
 import com.mariekd.letsplay.authentication.entities.User;
-import com.mariekd.letsplay.services.UserService;
+import com.mariekd.letsplay.authentication.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

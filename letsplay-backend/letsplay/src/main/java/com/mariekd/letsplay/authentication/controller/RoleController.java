@@ -1,7 +1,6 @@
 package com.mariekd.letsplay.authentication.controller;
 
 import com.mariekd.letsplay.authentication.entities.Role;
-import com.mariekd.letsplay.controllers.UserController;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 import com.mariekd.letsplay.authentication.services.RoleService;
 
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/roles")

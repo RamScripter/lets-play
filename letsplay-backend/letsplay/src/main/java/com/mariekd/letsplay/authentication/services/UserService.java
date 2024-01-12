@@ -1,4 +1,4 @@
-package com.mariekd.letsplay.services;
+package com.mariekd.letsplay.authentication.services;
 
 import com.mariekd.letsplay.authentication.entities.User;
 import org.springframework.stereotype.Service;

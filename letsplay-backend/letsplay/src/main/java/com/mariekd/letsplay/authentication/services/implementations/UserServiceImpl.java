@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -33,6 +34,11 @@ public class UserServiceImpl implements UserService {
     @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
     public User getUserById(UUID id) {
         return userRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public Optional<User> getUserByEmail(String email) {
+        return userRepository.findByEmail(email);
     }
 
     @Override

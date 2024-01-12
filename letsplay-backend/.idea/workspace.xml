@@ -5,16 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="028f9341-95c3-4bea-82f1-57fea0833f4a" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/authentication/config/ApplicationConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/authentication/config/JwtAuthenticationFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/authentication/config/JwtService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/letsplay/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/letsplay/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/authentication/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/authentication/WebSecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/authentication/controller/RoleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/authentication/controller/RoleController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/authentication/entities/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/authentication/entities/Role.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/controllers/MusicianTypeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/controllers/MusicianTypeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/authentication/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/repositories/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/authentication/repositories/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/authentication/services/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/services/implementation/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/authentication/services/implementations/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/authentication/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/authentication/config/WebSecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/authentication/entities/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/authentication/entities/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/authentication/repositories/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/authentication/repositories/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/authentication/services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/authentication/services/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/authentication/services/implementations/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/authentication/services/implementations/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/letsplay/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/letsplay/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,8 +27,8 @@
       <list>
         <option value="AnnotationType" />
         <option value="package-info" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -73,6 +74,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.mariekd.letsplay.authentication.config" />
       <recent name="com.mariekd.letsplay.controllers" />
     </key>
     <key name="ExtractSuperBase.RECENT_KEYS">
@@ -103,7 +105,7 @@
       <workItem from="1701357171091" duration="10602000" />
       <workItem from="1701442103366" duration="835000" />
       <workItem from="1702406710157" duration="3467000" />
-      <workItem from="1705051539362" duration="8622000" />
+      <workItem from="1705051539362" duration="16339000" />
     </task>
     <servers />
   </component>

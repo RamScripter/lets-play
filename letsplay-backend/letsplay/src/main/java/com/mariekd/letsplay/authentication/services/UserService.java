@@ -10,6 +10,7 @@ import java.util.UUID;
 public interface UserService {
     List<User> getAllUsers();
     User getUserById(UUID id);
+    <Optional> java.util.Optional<User> getUserByEmail(String email);
     User createUser(User user);
     User updateUser(UUID id, User user);
     void deleteUser(UUID id);

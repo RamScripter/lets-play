@@ -1,17 +1,24 @@
 package com.mariekd.letsplay.authentication.entities;
 
 import jakarta.persistence.*;
+
+import java.util.Collection;
+import java.util.List;
 import java.util.UUID;
 
 import lombok.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
 @Table(name = "app_user")
+@Builder
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
+public class User implements UserDetails {
 
     @Id
     @Column(updatable = false, nullable = false, name="id")
@@ -31,4 +38,33 @@ public class User {
     @JoinColumn(nullable = false, name="role")
     private Role role;
 
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority(role.getRole()));
+    }
+
+    @Override
+    public String getUsername() {
+        return email; // return name ?
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
 }

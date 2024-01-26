@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.UUID;
 @Entity
@@ -14,7 +15,7 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Role {
+public class Role implements Serializable {
 
     @Id
     @Column(updatable = false, nullable = false, name="id")
@@ -26,4 +27,9 @@ public class Role {
 
     @OneToMany(mappedBy = "role", fetch = FetchType.EAGER)
     private List<User> users;
+
+    @Override
+    public String toString() {
+        return "ROLE_" + role; // or any other representation you prefer
+    }
 }

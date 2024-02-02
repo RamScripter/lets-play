@@ -1,9 +1,13 @@
 package com.mariekd.letsplay.authentication.controller;
 
+import com.mariekd.letsplay.authentication.config.PasswordEncoderConfig;
+import com.mariekd.letsplay.authentication.entities.LoginRequest;
 import com.mariekd.letsplay.authentication.entities.User;
 import com.mariekd.letsplay.authentication.services.UserService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
 import org.slf4j.Logger;
@@ -14,12 +18,17 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/users")
-@RequiredArgsConstructor
 @CrossOrigin(maxAge = 3600)
 public class UserController {
 
-    @Autowired
     private final UserService userService;
+    private final PasswordEncoderConfig passwordEncoderConfig;
+
+    @Autowired
+    public UserController(UserService userService, PasswordEncoderConfig passwordEncoderConfig) {
+        this.userService = userService;
+        this.passwordEncoderConfig = passwordEncoderConfig;
+    }
 
     private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
 
@@ -37,6 +46,16 @@ public class UserController {
 
     @PostMapping("/register")
     public User createUser(@RequestBody User user) {
+        try {
+            if (!userService.existsByEmail(user.getEmail())) {
+                user.setPassword(passwordEncoderConfig.passwordEncoder().encode(user.getPassword()));
+            } else {
+                throw new IllegalArgumentException("User with email " + user.getEmail() + " already exists");
+            }
+        } catch (Exception e) {
+            LOGGER.error("Error creating user: " + e.getMessage()); //TODO : send back error message to client
+            throw new IllegalArgumentException("Error creating user: " + e.getMessage());
+        }
         return userService.createUser(user);
     }
 
@@ -50,9 +69,18 @@ public class UserController {
         userService.deleteUser(id);
     }
 
-    @GetMapping("/login")
-    public String login() {
-        return "login";
+    @PostMapping("/login")
+    public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest) {
+        try {
+            UserDetails receivedUserInfo = userService.loadUserByUsername(loginRequest.getEmail());
+            if (!passwordEncoderConfig.passwordEncoder().matches(loginRequest.getPassword(), receivedUserInfo.getPassword())) {
+                throw new UsernameNotFoundException("Invalid username or password");
+            }
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Invalid username or password");
+        }
+
+        return ResponseEntity.ok("Logged in");
     }
 
 }

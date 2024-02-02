@@ -5,29 +5,26 @@ import com.mariekd.letsplay.authentication.entities.Role;
 import com.mariekd.letsplay.authentication.entities.User;
 import com.mariekd.letsplay.authentication.repositories.UserRepository;
 import com.mariekd.letsplay.authentication.services.UserService;
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Service
-@RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
-    private final PasswordEncoderConfig passwordEncoderConfig = new PasswordEncoderConfig();
-
-    @Autowired
+    private final PasswordEncoderConfig passwordEncoderConfig;
     private final UserRepository userRepository;
+
+    public UserServiceImpl(PasswordEncoderConfig passwordEncoderConfig, UserRepository userRepository) {
+        this.passwordEncoderConfig = passwordEncoderConfig;
+        this.userRepository = userRepository;
+    }
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
@@ -44,6 +41,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getUserByEmail(String email) {
         return userRepository.findByEmail(email);
+    }
+
+    @Override
+    public boolean existsByEmail(String email) {
+        return userRepository.existsByEmail(email);
     }
 
     @Override
@@ -75,7 +77,7 @@ public class UserServiceImpl implements UserService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByEmail(username);
         if(user == null) {
-            throw new UsernameNotFoundException("Ivalid username or password");
+            throw new UsernameNotFoundException("Invalid username or password");
         }
 
         return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(),  Collections.singletonList(mapRolesToAuthority(user.getRole())));

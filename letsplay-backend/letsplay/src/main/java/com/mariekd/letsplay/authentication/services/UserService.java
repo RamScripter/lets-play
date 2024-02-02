@@ -12,6 +12,9 @@ public interface UserService extends UserDetailsService {
     List<User> getAllUsers();
     User getUserById(UUID id);
     User getUserByEmail(String email);
+
+    boolean existsByEmail(String email);
+
     User createUser(User user);
     User updateUser(UUID id, User user);
     void deleteUser(UUID id);

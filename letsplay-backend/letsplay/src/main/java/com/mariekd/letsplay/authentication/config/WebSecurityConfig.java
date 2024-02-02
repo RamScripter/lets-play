@@ -61,8 +61,8 @@ public class WebSecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers(request -> request
-                                .getServletPath().equals("/api/users/register")).permitAll() // à modifier pour que seule la création soit accessible
+                        .requestMatchers("/api/users/register").permitAll() // à modifier pour que seule la création soit accessible
+                        .requestMatchers("/api/users/login").permitAll() // à modifier pour que seule la création soit accessible
                         .anyRequest().authenticated()
 
                 )

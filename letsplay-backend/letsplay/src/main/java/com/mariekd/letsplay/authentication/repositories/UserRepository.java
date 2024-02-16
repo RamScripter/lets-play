@@ -1,10 +1,9 @@
 package com.mariekd.letsplay.authentication.repositories;
 
-import com.mariekd.letsplay.authentication.entities.User;
+import com.mariekd.letsplay.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.Optional;
 import java.util.UUID;
 
 @Repository

@@ -1,6 +1,6 @@
 package com.mariekd.letsplay.controllers;
 
-import com.mariekd.letsplay.authentication.controller.UserController;
+import com.mariekd.letsplay.authentication.controller.AuthController;
 import com.mariekd.letsplay.entities.MusicianType;
 import com.mariekd.letsplay.services.MusicianTypeService;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +20,7 @@ public class MusicianTypeController {
     @Autowired
     private final MusicianTypeService musicianTypeService;
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(AuthController.class);
 
     @GetMapping
     public List<MusicianType> getAllMusicianTypes() {

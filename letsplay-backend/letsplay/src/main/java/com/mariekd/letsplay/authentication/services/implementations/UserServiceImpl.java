@@ -1,14 +1,9 @@
 package com.mariekd.letsplay.authentication.services.implementations;
 
 import com.mariekd.letsplay.authentication.config.PasswordEncoderConfig;
-import com.mariekd.letsplay.authentication.entities.Role;
-import com.mariekd.letsplay.authentication.entities.User;
+import com.mariekd.letsplay.entities.User;
 import com.mariekd.letsplay.authentication.repositories.UserRepository;
 import com.mariekd.letsplay.authentication.services.UserService;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -73,18 +68,4 @@ public class UserServiceImpl implements UserService {
         userRepository.deleteById(id);
     }
 
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByEmail(username);
-        if(user == null) {
-            throw new UsernameNotFoundException("Invalid username or password");
-        }
-
-        return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(),  Collections.singletonList(mapRolesToAuthority(user.getRole())));
-    }
-
-    // get the user's role and map it to a list of authorities
-    private GrantedAuthority mapRolesToAuthority(Role role) {
-        return new SimpleGrantedAuthority(role.getRole());
-    }
 }

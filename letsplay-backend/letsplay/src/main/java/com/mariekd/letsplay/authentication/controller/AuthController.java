@@ -4,7 +4,7 @@ import com.mariekd.letsplay.authentication.payload.response.UserInfoResponse;
 import com.mariekd.letsplay.authentication.jwt.JwtService;
 import com.mariekd.letsplay.authentication.config.PasswordEncoderConfig;
 import com.mariekd.letsplay.authentication.payload.request.LoginRequest;
-import com.mariekd.letsplay.entities.User;
+import com.mariekd.letsplay.app.entities.User;
 import com.mariekd.letsplay.authentication.models.UserInfo;
 import com.mariekd.letsplay.authentication.services.implementations.UserServiceImpl;
 import org.springframework.http.HttpHeaders;

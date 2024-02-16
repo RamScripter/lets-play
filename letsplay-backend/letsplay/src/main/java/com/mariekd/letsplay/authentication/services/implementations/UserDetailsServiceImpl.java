@@ -1,6 +1,6 @@
 package com.mariekd.letsplay.authentication.services.implementations;
 
-import com.mariekd.letsplay.entities.User;
+import com.mariekd.letsplay.app.entities.User;
 import com.mariekd.letsplay.authentication.models.UserInfo;
 import com.mariekd.letsplay.authentication.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

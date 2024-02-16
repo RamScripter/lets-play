@@ -1,6 +1,6 @@
 package com.mariekd.letsplay.authentication.services;
 
-import com.mariekd.letsplay.entities.User;
+import com.mariekd.letsplay.app.entities.User;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

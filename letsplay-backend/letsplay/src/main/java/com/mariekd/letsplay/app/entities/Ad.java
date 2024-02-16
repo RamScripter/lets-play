@@ -1,4 +1,4 @@
-package com.mariekd.letsplay.entities;
+package com.mariekd.letsplay.app.entities;
 
 import jakarta.persistence.*;
 import java.util.Date;

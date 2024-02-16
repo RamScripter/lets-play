@@ -1,6 +1,6 @@
-package com.mariekd.letsplay.services;
+package com.mariekd.letsplay.app.services;
 
-import com.mariekd.letsplay.entities.MusicianType;
+import com.mariekd.letsplay.app.entities.MusicianType;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

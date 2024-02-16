@@ -1,7 +1,7 @@
 package com.mariekd.letsplay.authentication.services.implementations;
 
 import com.mariekd.letsplay.authentication.config.PasswordEncoderConfig;
-import com.mariekd.letsplay.entities.User;
+import com.mariekd.letsplay.app.entities.User;
 import com.mariekd.letsplay.authentication.repositories.UserRepository;
 import com.mariekd.letsplay.authentication.services.UserService;
 import org.springframework.stereotype.Service;

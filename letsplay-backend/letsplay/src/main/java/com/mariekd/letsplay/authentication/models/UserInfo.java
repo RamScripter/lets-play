@@ -1,7 +1,7 @@
 package com.mariekd.letsplay.authentication.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.mariekd.letsplay.entities.User;
+import com.mariekd.letsplay.app.entities.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 

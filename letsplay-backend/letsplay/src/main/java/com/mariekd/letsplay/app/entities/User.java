@@ -1,6 +1,5 @@
-package com.mariekd.letsplay.entities;
+package com.mariekd.letsplay.app.entities;
 
-import com.mariekd.letsplay.entities.Role;
 import jakarta.persistence.*;
 
 import java.util.*;
@@ -9,7 +8,6 @@ import lombok.*;
 
 @Entity
 @Table(name = "app_user", uniqueConstraints = @UniqueConstraint(columnNames = { "name", "email" }) )
-@Builder
 public class User {
 
     @Id
@@ -26,16 +24,18 @@ public class User {
     @Column(length = 255, nullable = false, name="password")
     private String password;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "role_id")
-    private Role role;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles = new HashSet<>();
 
     public User(UUID id, String name, String email, String password, Role role) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
-        this.role = role;
+        this.roles = roles;
     }
 
     public User() {
@@ -75,11 +75,11 @@ public class User {
 
 
     public void setRole(Role role) {
-        this.role = role;
+        this.roles = roles;
     }
 
     public Role getRole() {
-        return role;
+        return roles.iterator().next();
     }
 
 }

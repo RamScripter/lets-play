@@ -10,6 +10,15 @@
         http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd">
 
     <changeSet  id="1"  author="Marie-KD">
+        <createTable  tableName="roles">
+            <column  name="id"  type="integer">
+                <constraints  primaryKey="true"  nullable="false"/>
+            </column>
+            <column  name="name"  type="varchar(50)">
+                <constraints  nullable="false"/>
+            </column>
+        </createTable>
+
         <createTable  tableName="app_user">
             <column  name="user_id"  type="UUID">
                 <constraints  primaryKey="true"  nullable="false"/>
@@ -23,17 +32,16 @@
             <column  name="password"  type="varchar(255)">
                 <constraints  nullable="false"/>
             </column>
-            <column  name="role_id"  type="integer">
-                <constraints  nullable="false"/>
-            </column>
         </createTable>
 
         <createTable  tableName="user_roles">
-            <column  name="role_id"  type="integer">
-                <constraints  primaryKey="true"  nullable="false"/>
+            <column  name="user_id"  type="UUID">
+                <constraints  nullable="false"
+                foreignKeyName="user_id" references="app_user(user_id)"/>
             </column>
-            <column  name="type"  type="varchar(50)">
-                <constraints  nullable="false"/>
+            <column  name="role_id"  type="integer">
+                <constraints  nullable="false" foreignKeyName="role_id"
+                references="roles(id)"/>
             </column>
         </createTable>
 
@@ -99,13 +107,6 @@
     </changeSet>
 
     <changeSet id="2" author="Marie-KD">
-        <addForeignKeyConstraint
-                baseTableName="app_user"
-                baseColumnNames="role_id"
-                referencedTableName="user_roles"
-                referencedColumnNames="role_id"
-                constraintName="fk_user_role_id"
-        />
         <addForeignKeyConstraint
                 baseTableName="ad"
                 baseColumnNames="posted_by"
@@ -185,18 +186,18 @@
 <!--    Inserts à partir de ce point -->
     <changeSet id="5" author="Marie-KD">
         <addAutoIncrement columnDataType="int"
-                          columnName="role_id"
+                          columnName="id"
                           defaultOnNull="false"
                           generationType="ALWAYS"
                           incrementBy="1"
                           schemaName="public"
-                          tableName="user_roles"/>
+                          tableName="roles"/>
 
-        <insert tableName="user_roles">
-            <column name="type" value="user" />
+        <insert tableName="roles">
+            <column name="name" value="user" />
         </insert>
-        <insert tableName="user_roles">
-            <column name="type" value="admin" />
+        <insert tableName="roles">
+            <column name="name" value="admin" />
         </insert>
     </changeSet>
 

@@ -1,8 +1,8 @@
-package com.mariekd.letsplay.controllers;
+package com.mariekd.letsplay.app.controllers;
 
 import com.mariekd.letsplay.authentication.controller.AuthController;
-import com.mariekd.letsplay.entities.MusicianType;
-import com.mariekd.letsplay.services.MusicianTypeService;
+import com.mariekd.letsplay.app.entities.MusicianType;
+import com.mariekd.letsplay.app.services.MusicianTypeService;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

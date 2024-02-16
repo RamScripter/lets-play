@@ -1,8 +1,8 @@
-package com.mariekd.letsplay.services.implementation;
+package com.mariekd.letsplay.app.services.implementation;
 
-import com.mariekd.letsplay.entities.MusicianType;
-import com.mariekd.letsplay.repositories.MusicianTypeRepository;
-import com.mariekd.letsplay.services.MusicianTypeService;
+import com.mariekd.letsplay.app.entities.MusicianType;
+import com.mariekd.letsplay.app.services.MusicianTypeService;
+import com.mariekd.letsplay.app.repositories.MusicianTypeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

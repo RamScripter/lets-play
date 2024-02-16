@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/letsplay/letsplay.iml" filepath="$PROJECT_DIR$/letsplay/letsplay.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/letsplay-backend.iml" filepath="$PROJECT_DIR$/.idea/letsplay-backend.iml" />
     </modules>
   </component>

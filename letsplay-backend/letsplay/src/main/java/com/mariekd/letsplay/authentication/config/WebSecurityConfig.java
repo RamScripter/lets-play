@@ -12,6 +12,8 @@ import org.springframework.security.config.annotation.authentication.configurati
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
@@ -19,8 +21,10 @@ import org.springframework.security.web.SecurityFilterChain;
 @RequiredArgsConstructor
 public class WebSecurityConfig {
 
-
-    private final PasswordEncoderConfig passwordEncoderConfig;
+    @Bean
+    public PasswordEncoder passwordEncoder () {
+        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
+    }
 
     @Bean
     public JwtAuthenticationFilter authenticationJwtTokenFilter() {
@@ -33,7 +37,7 @@ public class WebSecurityConfig {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
 
         authProvider.setUserDetailsService(userDetailsService); // set the custom user details service
-        authProvider.setPasswordEncoder(passwordEncoderConfig.passwordEncoder()); // encodes password
+        authProvider.setPasswordEncoder(passwordEncoder()); // encodes password
         return authProvider;
     }
 

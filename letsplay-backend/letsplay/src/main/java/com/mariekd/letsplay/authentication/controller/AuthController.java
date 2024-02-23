@@ -2,7 +2,6 @@ package com.mariekd.letsplay.authentication.controller;
 
 import com.mariekd.letsplay.authentication.payload.response.UserInfoResponse;
 import com.mariekd.letsplay.authentication.jwt.JwtService;
-import com.mariekd.letsplay.authentication.config.PasswordEncoderConfig;
 import com.mariekd.letsplay.authentication.payload.request.LoginRequest;
 import com.mariekd.letsplay.app.entities.User;
 import com.mariekd.letsplay.authentication.models.UserInfo;
@@ -14,6 +13,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.security.core.context.SecurityContextHolder;
 
@@ -30,14 +30,15 @@ public class AuthController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(AuthController.class);
     private final AuthenticationManager authenticationManager;
-    private final PasswordEncoderConfig passwordEncoderConfig;
+    private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final UserServiceImpl userService;
 
-    public AuthController(AuthenticationManager authenticationManager, JwtService jwtService, PasswordEncoderConfig passwordEncoderConfig, UserServiceImpl userService) {
+    public AuthController(AuthenticationManager authenticationManager, JwtService jwtService,
+                          PasswordEncoder passwordEncoder, UserServiceImpl userService) {
         this.authenticationManager = authenticationManager;
         this.jwtService = jwtService;
-        this.passwordEncoderConfig = passwordEncoderConfig;
+        this.passwordEncoder = passwordEncoder;
         this.userService = userService;
     }
 
@@ -80,7 +81,7 @@ public class AuthController {
     public User createUser(@RequestBody User user) {
         try {
             if (!userService.existsByEmail(user.getEmail())) {
-                user.setPassword(passwordEncoderConfig.passwordEncoder().encode(user.getPassword()));
+                user.setPassword(passwordEncoder.encode(user.getPassword()));
             } else {
                 throw new IllegalArgumentException("User with email " + user.getEmail() + " already exists");
             }

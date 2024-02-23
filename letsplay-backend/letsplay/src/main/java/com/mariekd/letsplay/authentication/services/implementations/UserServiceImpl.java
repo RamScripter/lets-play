@@ -1,9 +1,9 @@
 package com.mariekd.letsplay.authentication.services.implementations;
 
-import com.mariekd.letsplay.authentication.config.PasswordEncoderConfig;
 import com.mariekd.letsplay.app.entities.User;
 import com.mariekd.letsplay.authentication.repositories.UserRepository;
 import com.mariekd.letsplay.authentication.services.UserService;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,11 +13,11 @@ import java.util.*;
 @Service
 public class UserServiceImpl implements UserService {
 
-    private final PasswordEncoderConfig passwordEncoderConfig;
+    private final PasswordEncoder passwordEncoder;
     private final UserRepository userRepository;
 
-    public UserServiceImpl(PasswordEncoderConfig passwordEncoderConfig, UserRepository userRepository) {
-        this.passwordEncoderConfig = passwordEncoderConfig;
+    public UserServiceImpl(PasswordEncoder passwordEncoder, UserRepository userRepository) {
+        this.passwordEncoder = passwordEncoder;
         this.userRepository = userRepository;
     }
 
@@ -46,7 +46,7 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
     public User createUser(User user) {
-        user.setPassword(passwordEncoderConfig.passwordEncoder().encode(user.getPassword()));
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }
 

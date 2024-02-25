@@ -24,7 +24,7 @@ public class User {
     @Column(length = 255, nullable = false, name="password")
     private String password;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
@@ -35,7 +35,11 @@ public class User {
         this.name = name;
         this.email = email;
         this.password = password;
-        this.roles = roles;
+        this.roles = new HashSet<>();
+        if (role != null) {
+            this.roles.add(role);
+            role.getUsers().add(this); // Ajouter cet utilisateur aux utilisateurs associés à ce rôle
+        }
     }
 
     public User() {
@@ -74,12 +78,12 @@ public class User {
     }
 
 
-    public void setRole(Role role) {
-        this.roles = roles;
+    public Set<Role> getRoles() {
+        return roles;
     }
 
-    public Role getRole() {
-        return roles.iterator().next();
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 
 }

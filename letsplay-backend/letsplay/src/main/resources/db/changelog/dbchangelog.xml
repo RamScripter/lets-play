@@ -37,11 +37,11 @@
         <createTable  tableName="user_roles">
             <column  name="user_id"  type="UUID">
                 <constraints  nullable="false"
-                foreignKeyName="user_id" references="app_user(user_id)"/>
+                              foreignKeyName="user_id" references="app_user(user_id)"/>
             </column>
             <column  name="role_id"  type="integer">
                 <constraints  nullable="false" foreignKeyName="role_id"
-                references="roles(id)"/>
+                              references="roles(id)"/>
             </column>
         </createTable>
 
@@ -183,7 +183,7 @@
                           tableName="location"/>
     </changeSet>
 
-<!--    Inserts à partir de ce point -->
+    <!--    Inserts à partir de ce point -->
     <changeSet id="5" author="Marie-KD">
         <addAutoIncrement columnDataType="int"
                           columnName="id"
@@ -194,12 +194,11 @@
                           tableName="roles"/>
 
         <insert tableName="roles">
-            <column name="name" value="user" />
+            <column name="name" value="USER" />
         </insert>
         <insert tableName="roles">
-            <column name="name" value="admin" />
+            <column name="name" value="ADMIN" />
         </insert>
     </changeSet>
 
 </databaseChangeLog>
-

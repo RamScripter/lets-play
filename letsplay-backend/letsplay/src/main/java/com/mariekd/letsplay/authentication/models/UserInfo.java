@@ -1,12 +1,15 @@
 package com.mariekd.letsplay.authentication.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.mariekd.letsplay.app.entities.Role;
 import com.mariekd.letsplay.app.entities.User;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 public class UserInfo implements UserDetails {
@@ -26,7 +29,9 @@ public class UserInfo implements UserDetails {
     }
 
     public static UserInfo build(User user) {
-        List<GrantedAuthority> authorityList = (List<GrantedAuthority>) user.getRole();
+        List<SimpleGrantedAuthority> authorityList = user.getRoles().stream()
+                .map(role -> new SimpleGrantedAuthority(role.getName()))
+                .toList();
 
         return new UserInfo(user.getId(), user.getEmail(), user.getPassword(), authorityList);
     }

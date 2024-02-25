@@ -26,9 +26,9 @@ public class JwtService {
 
     private static final Logger logger = LoggerFactory.getLogger(JwtService.class);
 
-    private Key secretKey = Keys.secretKeyFor(SignatureAlgorithm.HS256);
+    private final Key secretKey = Keys.secretKeyFor(SignatureAlgorithm.HS512);
 
-    private String jwtCookieName = "jwt"; //TODO : replace with env variable
+    private final String jwtCookieName = "jwt"; //TODO : replace with env variable
 
     public String generateJwtToken(Authentication authentication) {
 

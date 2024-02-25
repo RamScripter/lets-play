@@ -3,6 +3,7 @@ package com.mariekd.letsplay.authentication.services.implementations;
 import com.mariekd.letsplay.app.entities.User;
 import com.mariekd.letsplay.authentication.repositories.UserRepository;
 import com.mariekd.letsplay.authentication.services.UserService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -58,7 +59,7 @@ public class UserServiceImpl implements UserService {
             return userRepository.save(user);
         }
         else {
-            throw new RuntimeException("User not found");
+            throw new UsernameNotFoundException("User not found");
         }
     }
 

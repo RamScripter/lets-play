@@ -28,15 +28,14 @@ public class WebSecurityConfig {
 
     @Bean
     public JwtAuthenticationFilter authenticationJwtTokenFilter() {
-        JwtAuthenticationFilter jwtAuthenticationFilter = new JwtAuthenticationFilter();
-        return jwtAuthenticationFilter;
+        return new JwtAuthenticationFilter();
     }
 
     @Bean
     public DaoAuthenticationProvider authenticationProvider(final UserDetailsServiceImpl userDetailsService) {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
 
-        authProvider.setUserDetailsService(userDetailsService); // set the custom user details service
+        authProvider.setUserDetailsService(userDetailsService); // sets the custom user details service
         authProvider.setPasswordEncoder(passwordEncoder()); // encodes password
         return authProvider;
     }

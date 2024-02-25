@@ -14,12 +14,12 @@ import java.util.UUID;
 
 public class UserInfo implements UserDetails {
 
-    private UUID id;
-    private String username;
+    private final UUID id;
+    private final String username;
     @JsonIgnore
-    private String password;
+    private final String password;
 
-    private Collection<? extends GrantedAuthority> authorities;
+    private final Collection<? extends GrantedAuthority> authorities;
 
     public UserInfo(UUID id, String username, String password, Collection<? extends GrantedAuthority> authorities) {
         this.id = id;
@@ -41,7 +41,7 @@ public class UserInfo implements UserDetails {
         return authorities;
     }
 
-    public UUID getId() { return id;}
+    public UUID id() { return id;}
 
     @Override
     public String getPassword() {

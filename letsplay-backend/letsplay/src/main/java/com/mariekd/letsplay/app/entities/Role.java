@@ -31,7 +31,7 @@ public class Role  {
 
     @Override
     public String toString() {
-        return "ROLE_" + name; // or any other representation you prefer
+        return "ROLE_" + name;
     }
 
     public Role(Long id, String name, User user) {
@@ -40,7 +40,7 @@ public class Role  {
         this.users = new HashSet<>();
         if (user != null) {
             this.users.add(user);
-            user.getRoles().add(this); // Ajouter cet utilisateur aux utilisateurs associés à ce rôle
+            user.getRoles().add(this);
         }
     }
 

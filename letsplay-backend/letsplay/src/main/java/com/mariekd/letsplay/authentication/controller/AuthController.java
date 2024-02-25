@@ -60,7 +60,7 @@ public class AuthController {
                 .toList();
 
         return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, jwt)
-                        .body(new UserInfoResponse(userDetails.getId(), userDetails.getUsername(), roles));
+                        .body(new UserInfoResponse(userDetails.id(), userDetails.getUsername(), roles));
     }
 
     @PostMapping("/logout")
@@ -73,7 +73,7 @@ public class AuthController {
     @GetMapping("/all")
     @CrossOrigin
     public List<User> getAllUsers() {
-        LOGGER.info("Getting all users: " + userService.getAllUsers());
+        LOGGER.info("Getting all users: {} ", userService.getAllUsers());
         return userService.getAllUsers();
     }
 
@@ -81,7 +81,7 @@ public class AuthController {
     public User createUser(@RequestBody User user) {
         try {
             if (!userService.existsByEmail(user.getEmail())) {
-                user.setPassword(passwordEncoder.encode(user.getPassword()));
+                return userService.createUser(user);
             } else {
                 throw new IllegalArgumentException("User with email " + user.getEmail() + " already exists");
             }
@@ -89,7 +89,6 @@ public class AuthController {
             LOGGER.error("Error creating user: " + e.getMessage()); //TODO : send back error message to client
             throw new IllegalArgumentException("Error creating user: " + e.getMessage());
         }
-        return userService.createUser(user);
     }
 
     @PutMapping("/{id}")

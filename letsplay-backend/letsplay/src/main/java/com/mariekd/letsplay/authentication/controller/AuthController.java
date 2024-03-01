@@ -7,8 +7,10 @@ import com.mariekd.letsplay.app.entities.User;
 import com.mariekd.letsplay.authentication.models.UserInfo;
 import com.mariekd.letsplay.authentication.services.implementations.UserServiceImpl;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -78,24 +80,30 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public User createUser(@RequestBody User user) {
+    public ResponseEntity<?> createUser(@RequestBody User user) {
         try {
             if (!userService.existsByEmail(user.getEmail())) {
-                return userService.createUser(user);
+                userService.createUser(user);
+                return ResponseEntity.ok(new UserInfoResponse(user.getId(), user.getEmail(), List.of(user.getRoles().toString())));
             } else {
                 throw new IllegalArgumentException("User with email " + user.getEmail() + " already exists");
             }
-        } catch (Exception e) {
-            LOGGER.error("Error creating user: " + e.getMessage()); //TODO : send back error message to client
-            throw new IllegalArgumentException("Error creating user: " + e.getMessage());
+        } catch (final IllegalArgumentException e) {
+            LOGGER.error("Error creating user: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Error creating user: " + e.getMessage());
+        } catch (final Exception e) {
+            LOGGER.error("Error creating user: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error creating user: " + e.getMessage());
         }
     }
 
+    @PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
     @PutMapping("/{id}")
     public User updateUser(@PathVariable UUID id, @RequestBody User user) {
         return userService.updateUser(id, user);
     }
 
+    @PreAuthorize("hasRole('ADMIN') or hasRole('USER')") // ne le laisser qu'en admin ?
     @DeleteMapping("/{id}")
     public void deleteUser(@PathVariable UUID id) {
         userService.deleteUser(id);

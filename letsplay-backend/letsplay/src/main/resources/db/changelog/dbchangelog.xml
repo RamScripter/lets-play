@@ -37,7 +37,8 @@
         <createTable  tableName="user_roles">
             <column  name="user_id"  type="UUID">
                 <constraints  nullable="false"
-                              foreignKeyName="user_id" references="app_user(user_id)"/>
+                              foreignKeyName="user_id" references="app_user(user_id)"
+                              deleteCascade="true"/>
             </column>
             <column  name="role_id"  type="integer">
                 <constraints  nullable="false" foreignKeyName="role_id"
@@ -113,6 +114,7 @@
                 referencedTableName="app_user"
                 referencedColumnNames="user_id"
                 constraintName="fk_app_user_id"
+                deleteCascade="true"
         />
 
         <addForeignKeyConstraint

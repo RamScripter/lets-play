@@ -91,7 +91,6 @@ public class JwtService {
 
     public String getJwtFromCookies(HttpServletRequest request) {
         final Cookie cookie = WebUtils.getCookie(request, jwtCookieName);
-
         if (cookie != null) {
             return cookie.getValue();
         } else {

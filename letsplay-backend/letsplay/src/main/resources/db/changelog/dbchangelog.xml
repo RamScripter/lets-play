@@ -10,7 +10,17 @@
         http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd">
 
     <changeSet  id="1"  author="Marie-KD">
-        <createTable  tableName="roles">
+
+        <sql dbms="h2" endDelimiter=";">
+
+            CREATE SCHEMA music
+
+        </sql>
+
+    </changeSet>
+
+    <changeSet  id="2"  author="Marie-KD">
+        <createTable  tableName="roles" schemaName="music">
             <column  name="id"  type="integer">
                 <constraints  primaryKey="true"  nullable="false"/>
             </column>
@@ -19,7 +29,7 @@
             </column>
         </createTable>
 
-        <createTable  tableName="app_user">
+        <createTable  tableName="app_user" schemaName="music">
             <column  name="user_id"  type="UUID">
                 <constraints  primaryKey="true"  nullable="false"/>
             </column>
@@ -34,7 +44,7 @@
             </column>
         </createTable>
 
-        <createTable  tableName="user_roles">
+        <createTable  tableName="user_roles" schemaName="music">
             <column  name="user_id"  type="UUID">
                 <constraints  nullable="false"
                               foreignKeyName="user_id" references="app_user(user_id)"
@@ -46,7 +56,7 @@
             </column>
         </createTable>
 
-        <createTable  tableName="musician_type">
+        <createTable  tableName="musician_type" schemaName="music">
             <column  name="id"  type="integer">
                 <constraints  primaryKey="true"  nullable="false"/>
             </column>
@@ -55,7 +65,7 @@
             </column>
         </createTable>
 
-        <createTable  tableName="style">
+        <createTable  tableName="style" schemaName="music">
             <column  name="id"  type="integer">
                 <constraints  primaryKey="true"  nullable="false"/>
             </column>
@@ -64,7 +74,7 @@
             </column>
         </createTable>
 
-        <createTable  tableName="location">
+        <createTable  tableName="location" schemaName="music">
             <column  name="id"  type="integer">
                 <constraints  primaryKey="true"  nullable="false"/>
             </column>
@@ -73,7 +83,7 @@
             </column>
         </createTable>
 
-        <createTable  tableName="ad">
+        <createTable  tableName="ad" schemaName="music">
             <column  name="id"  type="UUID">
                 <constraints  primaryKey="true"  nullable="false"/>
             </column>
@@ -107,8 +117,9 @@
         </createTable>
     </changeSet>
 
-    <changeSet id="2" author="Marie-KD">
+    <changeSet id="3" author="Marie-KD">
         <addForeignKeyConstraint
+                baseTableSchemaName="music"
                 baseTableName="ad"
                 baseColumnNames="posted_by"
                 referencedTableName="app_user"
@@ -118,6 +129,7 @@
         />
 
         <addForeignKeyConstraint
+                baseTableSchemaName="music"
                 baseTableName="ad"
                 baseColumnNames="seeking_musician_type"
                 referencedTableName="musician_type"
@@ -125,6 +137,7 @@
                 constraintName="fk_seeking_musician_type"
         />
         <addForeignKeyConstraint
+                baseTableSchemaName="music"
                 baseTableName="ad"
                 baseColumnNames="style_type"
                 referencedTableName="style"
@@ -132,6 +145,7 @@
                 constraintName="fk_style_type"
         />
         <addForeignKeyConstraint
+                baseTableSchemaName="music"
                 baseTableName="ad"
                 baseColumnNames="location_region"
                 referencedTableName="location"
@@ -140,65 +154,65 @@
         />
     </changeSet>
 
-    <changeSet id="3" author="Marie-KD">
-        <addAutoIncrement columnDataType="int"
-                          columnName="id"
-                          defaultOnNull="false"
-                          generationType="ALWAYS"
-                          incrementBy="1"
-                          schemaName="public"
-                          tableName="musician_type"/>
-        <insert tableName="musician_type">
-            <column name="type" value="vocalist" />
-        </insert>
-        <insert tableName="musician_type">
-            <column name="type" value="guitar" />
-        </insert>
-        <insert tableName="musician_type">
-            <column name="type" value="bass" />
-        </insert>
-        <insert tableName="musician_type">
-            <column name="type" value="drums" />
-        </insert>
-        <insert tableName="musician_type">
-            <column name="type" value="synths" />
-        </insert>
-        <insert tableName="musician_type">
-            <column name="type" value="miscelleanous" />
-        </insert>
-    </changeSet>
-
     <changeSet id="4" author="Marie-KD">
         <addAutoIncrement columnDataType="int"
                           columnName="id"
                           defaultOnNull="false"
                           generationType="ALWAYS"
                           incrementBy="1"
-                          schemaName="public"
-                          tableName="style"/>
-        <addAutoIncrement columnDataType="int"
-                          columnName="id"
-                          defaultOnNull="false"
-                          generationType="ALWAYS"
-                          incrementBy="1"
-                          schemaName="public"
-                          tableName="location"/>
+                          schemaName="music"
+                          tableName="musician_type"/>
+        <insert tableName="musician_type">
+            <column name="type" value="vocalist" />
+        </insert>
+        <insert tableName="musician_type" schemaName="music">
+            <column name="type" value="guitar" />
+        </insert>
+        <insert tableName="musician_type" schemaName="music">
+            <column name="type" value="bass" />
+        </insert>
+        <insert tableName="musician_type" schemaName="music">
+            <column name="type" value="drums" />
+        </insert>
+        <insert tableName="musician_type" schemaName="music">
+            <column name="type" value="synths" />
+        </insert>
+        <insert tableName="musician_type" schemaName="music">
+            <column name="type" value="miscelleanous" />
+        </insert>
     </changeSet>
 
-    <!--    Inserts à partir de ce point -->
     <changeSet id="5" author="Marie-KD">
         <addAutoIncrement columnDataType="int"
                           columnName="id"
                           defaultOnNull="false"
                           generationType="ALWAYS"
                           incrementBy="1"
-                          schemaName="public"
+                          schemaName="music"
+                          tableName="style"/>
+        <addAutoIncrement columnDataType="int"
+                          columnName="id"
+                          defaultOnNull="false"
+                          generationType="ALWAYS"
+                          incrementBy="1"
+                          schemaName="music"
+                          tableName="location"/>
+    </changeSet>
+
+    <!--    Inserts à partir de ce point -->
+    <changeSet id="6" author="Marie-KD">
+        <addAutoIncrement columnDataType="int"
+                          columnName="id"
+                          defaultOnNull="false"
+                          generationType="ALWAYS"
+                          incrementBy="1"
+                          schemaName="music"
                           tableName="roles"/>
 
-        <insert tableName="roles">
+        <insert tableName="roles" schemaName="music">
             <column name="name" value="USER" />
         </insert>
-        <insert tableName="roles">
+        <insert tableName="roles" schemaName="music">
             <column name="name" value="ADMIN" />
         </insert>
     </changeSet>

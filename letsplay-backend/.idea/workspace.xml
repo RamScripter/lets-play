@@ -5,12 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3baf2b4f-eeef-49c4-b2cc-c86a1855d24e" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/letsplay/src/main/resources/preliquibase/DBENGINECODE.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/authentication/config/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/authentication/config/WebSecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/authentication/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/authentication/controller/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/authentication/jwt/JwtAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/authentication/jwt/JwtAuthenticationFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/authentication/jwt/JwtService.java" beforeDir="false" afterPath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/authentication/jwt/JwtService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/authentication/payload/response/UserInfoResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/authentication/payload/response/UserInfoResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/letsplay/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/letsplay/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/letsplay/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/letsplay/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/letsplay/src/main/resources/db/changelog/dbchangelog.xml" beforeDir="false" afterPath="$PROJECT_DIR$/letsplay/src/main/resources/db/changelog/dbchangelog.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -148,6 +146,16 @@
           <url>file://$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/authentication/jwt/JwtService.java</url>
           <line>53</line>
           <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/authentication/jwt/JwtService.java</url>
+          <line>58</line>
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/authentication/jwt/JwtService.java</url>
+          <line>63</line>
+          <option name="timeStamp" value="19" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/authentication/controller/AuthController.java</url>

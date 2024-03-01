@@ -5,18 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3baf2b4f-eeef-49c4-b2cc-c86a1855d24e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/dto/MusicianTypeDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/dto/mappers/MusicianTypeMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/dto/LocationDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/dto/StyleDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/dto/mappers/LocationMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/dto/mappers/StyleMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/entities/Location.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/entities/Style.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/controllers/AdController.java" beforeDir="false" afterPath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/controllers/AdController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/dto/AdDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/dto/AdDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/dto/AdMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/dto/mappers/AdMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/dto/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/dto/mappers/UserMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/dto/mappers/AdMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/dto/mappers/AdMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/entities/Ad.java" beforeDir="false" afterPath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/entities/Ad.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/entities/MusicianType.java" beforeDir="false" afterPath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/entities/MusicianType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/authentication/entities/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/authentication/entities/User.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,6 +81,7 @@
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.mariekd.letsplay.app.dto.mappers" />
       <recent name="com.mariekd.letsplay.app.dto" />
+      <recent name="com.mariekd.letsplay.app.entities" />
     </key>
   </component>
   <component name="RunManager">

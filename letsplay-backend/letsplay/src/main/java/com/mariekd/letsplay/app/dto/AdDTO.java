@@ -13,12 +13,12 @@ public class AdDTO {
     private String title;
     private String seekingMusicianType;
     private String image;
-    private int styleType;
+    private String styleType;
     private String location;
     private String description;
 
     public AdDTO(int id, Date createdAt, String postedBy, String title,
-                 String seekingMusicianType, String image, int styleType,
+                 String seekingMusicianType, String image, String styleType,
                  String location, String description) {
         this.id = id;
         this.createdAt = createdAt;

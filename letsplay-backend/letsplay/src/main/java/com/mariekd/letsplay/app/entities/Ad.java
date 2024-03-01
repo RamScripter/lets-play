@@ -33,18 +33,18 @@ public class Ad {
     @Column(nullable = false, name="image")
     private String image;
 
-    @Column(nullable = false, name="style_type")
-    private int styleType;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="style_type", nullable = false, referencedColumnName = "id")
+    private Style styleType;
 
-    @Column(nullable = false, name="location")
-    private String location;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="location", nullable = false, referencedColumnName = "id")
+    private Location location;
 
     @Column(nullable = false, name="description")
     private String description;
 
-    public Ad(int id, Date createdAt, User postedBy, String title,
-              MusicianType seekingMusicianType, String image, int styleType,
-              String location, String description) {
+    public Ad(int id, Date createdAt, User postedBy, String title, MusicianType seekingMusicianType, String image, Style styleType, Location location, String description) {
         this.id = id;
         this.createdAt = createdAt;
         this.postedBy = postedBy;
@@ -108,19 +108,19 @@ public class Ad {
         this.image = image;
     }
 
-    public int getStyleType() {
+    public Style getStyleType() {
         return styleType;
     }
 
-    public void setStyleType(int styleType) {
+    public void setStyleType(Style styleType) {
         this.styleType = styleType;
     }
 
-    public String getLocation() {
+    public Location getLocation() {
         return location;
     }
 
-    public void setLocation(String location) {
+    public void setLocation(Location location) {
         this.location = location;
     }
 

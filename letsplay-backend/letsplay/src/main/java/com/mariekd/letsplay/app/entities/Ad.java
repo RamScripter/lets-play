@@ -1,5 +1,6 @@
 package com.mariekd.letsplay.app.entities;
 
+import com.mariekd.letsplay.app.dto.mappers.MusicianTypeMapper;
 import com.mariekd.letsplay.authentication.entities.User;
 import jakarta.persistence.*;
 import java.util.Date;
@@ -25,8 +26,9 @@ public class Ad {
     @Column(nullable = false, name="title")
     private String title;
 
-    @Column(nullable = false, name="seeking_musician_type")
-    private int seekingMusicianType;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="seeking_musician_type", nullable = false, referencedColumnName = "id")
+    private MusicianType seekingMusicianType;
 
     @Column(nullable = false, name="image")
     private String image;
@@ -41,7 +43,7 @@ public class Ad {
     private String description;
 
     public Ad(int id, Date createdAt, User postedBy, String title,
-              int seekingMusicianType, String image, int styleType,
+              MusicianType seekingMusicianType, String image, int styleType,
               String location, String description) {
         this.id = id;
         this.createdAt = createdAt;
@@ -90,11 +92,11 @@ public class Ad {
         this.title = title;
     }
 
-    public int getSeekingMusicianType() {
+    public MusicianType getSeekingMusicianType() {
         return seekingMusicianType;
     }
 
-    public void setSeekingMusicianType(int seekingMusicianType) {
+    public void setSeekingMusicianType(MusicianType seekingMusicianType) {
         this.seekingMusicianType = seekingMusicianType;
     }
 

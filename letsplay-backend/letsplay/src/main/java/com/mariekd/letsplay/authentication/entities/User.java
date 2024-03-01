@@ -41,7 +41,7 @@ public class User {
         this.roles = new HashSet<>();
         if (role != null) {
             this.roles.add(role);
-            role.getUsers().add(this); // Ajouter cet utilisateur aux utilisateurs associés à ce rôle
+            role.getUsers().add(this);
         }
     }
 

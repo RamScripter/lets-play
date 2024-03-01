@@ -1,5 +1,6 @@
-package com.mariekd.letsplay.app.dto;
+package com.mariekd.letsplay.app.dto.mappers;
 
+import com.mariekd.letsplay.app.dto.AdDTO;
 import com.mariekd.letsplay.app.entities.Ad;
 
 public class AdMapper {
@@ -9,7 +10,7 @@ public class AdMapper {
         adDTO.setCreatedAt(ad.getCreatedAt());
         adDTO.setPostedBy(UserMapper.toUserDTO(ad.getPostedBy()).getName());
         adDTO.setTitle(ad.getTitle());
-        adDTO.setSeekingMusicianType(ad.getSeekingMusicianType());
+        adDTO.setSeekingMusicianType(MusicianTypeMapper.toMusicianDTO(ad.getSeekingMusicianType()).getName());
         adDTO.setImage(ad.getImage());
         adDTO.setStyleType(ad.getStyleType());
         adDTO.setLocation(ad.getLocation());

@@ -1,9 +1,8 @@
 package com.mariekd.letsplay.app.controllers;
 
 import com.mariekd.letsplay.app.dto.AdDTO;
-import com.mariekd.letsplay.app.dto.AdMapper;
+import com.mariekd.letsplay.app.dto.mappers.AdMapper;
 import com.mariekd.letsplay.app.entities.Ad;
-import com.mariekd.letsplay.app.services.AdService;
 import com.mariekd.letsplay.app.services.implementation.AdServiceImpl;
 import org.springframework.web.bind.annotation.*;
 

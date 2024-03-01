@@ -1,5 +1,6 @@
-package com.mariekd.letsplay.app.dto;
+package com.mariekd.letsplay.app.dto.mappers;
 
+import com.mariekd.letsplay.app.dto.UserDTO;
 import com.mariekd.letsplay.authentication.entities.User;
 
 public class UserMapper {

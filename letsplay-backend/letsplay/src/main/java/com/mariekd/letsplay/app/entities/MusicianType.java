@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 
 import lombok.*;
 
+import java.util.Set;
+
 @Entity
 @Table(name = "musician_type")
 @Data
@@ -13,12 +15,16 @@ public class MusicianType {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(length = 50, nullable = false,  name="type")
+    @Column(length = 50, nullable = false,  name="name")
     private String name;
 
-    public MusicianType(int id, String name) {
+    @OneToMany(mappedBy = "seekingMusicianType", fetch = FetchType.EAGER)
+    private Set<Ad> ads;
+
+    public MusicianType(int id, String name, Set<Ad> ads) {
         this.id = id;
         this.name = name;
+        this.ads = ads;
     }
 
     public MusicianType() {
@@ -39,5 +45,9 @@ public class MusicianType {
     public void setName(String name) {
         this.name = name;
     }
+
+    public Set<Ad> getAds() { return ads; }
+
+    public void setAds(Set<Ad> ads) { this.ads = ads; }
 }
 

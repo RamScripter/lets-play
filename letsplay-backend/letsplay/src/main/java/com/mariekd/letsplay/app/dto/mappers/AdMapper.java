@@ -2,6 +2,9 @@ package com.mariekd.letsplay.app.dto.mappers;
 
 import com.mariekd.letsplay.app.dto.AdDTO;
 import com.mariekd.letsplay.app.entities.Ad;
+import com.mariekd.letsplay.authentication.entities.User;
+
+import java.util.UUID;
 
 public class AdMapper {
     public static AdDTO toAdDTO(Ad ad) {
@@ -17,4 +20,5 @@ public class AdMapper {
         adDTO.setDescription(ad.getDescription());
         return adDTO;
     }
+
 }

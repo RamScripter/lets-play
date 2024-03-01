@@ -1,7 +1,6 @@
 package com.mariekd.letsplay.authentication.payload.request;
 
-//import jakarta.validation.constraints.NotBlank; //TODO : update mvn repository...
+import jakarta.validation.constraints.NotBlank;
 
-
-public record LoginRequest (String username, String password) {
+public record LoginRequest (@NotBlank String username, @NotBlank String password) {
 }

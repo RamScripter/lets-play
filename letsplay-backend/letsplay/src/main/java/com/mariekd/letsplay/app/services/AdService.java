@@ -11,6 +11,8 @@ public interface AdService {
 
     Ad getAdById(int id);
 
+    Boolean existsAdByTitle(String title);
+
     Ad createAd(Ad ad);
 
     Ad updateAd(int id, Ad ad);

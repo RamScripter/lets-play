@@ -29,6 +29,11 @@ public class AdServiceImpl implements AdService {
     }
 
     @Override
+    public Boolean existsAdByTitle(String title) {
+        return adRepository.existsAdByTitle(title);
+    }
+
+    @Override
     public Ad createAd(Ad ad) {
         return adRepository.save(ad);
     }

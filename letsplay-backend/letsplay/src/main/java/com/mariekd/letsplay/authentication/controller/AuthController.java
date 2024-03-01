@@ -94,13 +94,13 @@ public class AuthController {
         }
     }
 
-    @PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('USER')") // TODO : créer deux routes : générale pour les admins, ne peut modifier que SON compte pour les users
     @PutMapping("/{id}")
     public User updateUser(@PathVariable UUID id, @RequestBody User user) {
         return userService.updateUser(id, user);
     }
 
-    @PreAuthorize("hasRole('ADMIN') or hasRole('USER')") // ne le laisser qu'en admin ?
+    @PreAuthorize("hasRole('ADMIN') or hasRole('USER')") // TODO : créer deux routes : générale pour les admins, ne peut supprimer que SON compte pour les users
     @DeleteMapping("/{id}")
     public void deleteUser(@PathVariable UUID id) {
         userService.deleteUser(id);

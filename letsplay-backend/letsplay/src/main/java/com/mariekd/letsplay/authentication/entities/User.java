@@ -1,10 +1,9 @@
-package com.mariekd.letsplay.app.entities;
+package com.mariekd.letsplay.authentication.entities;
 
+import com.mariekd.letsplay.app.entities.Ad;
 import jakarta.persistence.*;
 
 import java.util.*;
-
-import lombok.*;
 
 @Entity
 @Table(name = "app_user", uniqueConstraints = @UniqueConstraint(columnNames = { "name", "email" }) )
@@ -30,11 +29,15 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
-    public User(UUID id, String name, String email, String password, Role role) {
+    @OneToMany(mappedBy = "postedBy", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Set<Ad> ads;
+
+    public User(UUID id, String name, String email, String password, Role role, Set<Ad> ads) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
+        this.ads = ads;
         this.roles = new HashSet<>();
         if (role != null) {
             this.roles.add(role);
@@ -86,4 +89,11 @@ public class User {
         this.roles = roles;
     }
 
+    public Set<Ad> getAds() {
+        return ads;
+    }
+
+    public void setAds(Set<Ad> ads) {
+        this.ads = ads;
+    }
 }

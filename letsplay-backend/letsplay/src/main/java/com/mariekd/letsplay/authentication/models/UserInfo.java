@@ -1,15 +1,13 @@
 package com.mariekd.letsplay.authentication.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.mariekd.letsplay.app.entities.Role;
-import com.mariekd.letsplay.app.entities.User;
+import com.mariekd.letsplay.authentication.entities.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.Set;
 import java.util.UUID;
 
 public class UserInfo implements UserDetails {

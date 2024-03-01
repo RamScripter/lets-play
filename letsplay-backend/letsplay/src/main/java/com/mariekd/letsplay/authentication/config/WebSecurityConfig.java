@@ -51,11 +51,7 @@ public class WebSecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http, UserDetailsServiceImpl userDetailsService) throws Exception {
         http
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/api/users/register").permitAll() // à modifier pour que seule la création soit accessible
-                        .requestMatchers("/api/users/login").permitAll() // à modifier pour que seule la création soit accessible
-                        .requestMatchers("/api/users/logout").permitAll()
-                        .requestMatchers("/api/users/all").permitAll()
-                        .requestMatchers("/api/users/{id}").permitAll()
+                        .requestMatchers("/**").permitAll() // à modifier pour que seule la création soit accessible
                         .anyRequest().authenticated()
 
                 )

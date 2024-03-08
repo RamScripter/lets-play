@@ -5,34 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3baf2b4f-eeef-49c4-b2cc-c86a1855d24e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/repositories/LocationRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/repositories/MusicianTypeRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/repositories/StyleRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/services/LocationService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/services/MusicianTypeService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/services/StyleService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/services/implementation/LocationServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/services/implementation/MusicianTypeServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/services/implementation/StyleServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/3884d7df-4427-4262-9e0d-c18bbc407a25.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/3884d7df-4427-4262-9e0d-c18bbc407a25.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/controllers/AdController.java" beforeDir="false" afterPath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/controllers/AdController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/entities/Ad.java" beforeDir="false" afterPath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/entities/Ad.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/entities/Location.java" beforeDir="false" afterPath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/entities/Location.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/entities/MusicianType.java" beforeDir="false" afterPath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/entities/MusicianType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/entities/Style.java" beforeDir="false" afterPath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/entities/Style.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/repositories/AdRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/repositories/AdRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/services/AdService.java" beforeDir="false" afterPath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/services/AdService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/services/implementation/AdServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/services/implementation/AdServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/authentication/config/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/authentication/config/WebSecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/authentication/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/authentication/controller/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/authentication/entities/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/authentication/entities/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/authentication/enums/ERole.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/authentication/jwt/JwtService.java" beforeDir="false" afterPath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/authentication/jwt/JwtService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/authentication/repositories/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/authentication/repositories/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/authentication/services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/authentication/services/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/authentication/services/implementations/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/authentication/services/implementations/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/letsplay/src/main/resources/db/changelog/dbchangelog.xml" beforeDir="false" afterPath="$PROJECT_DIR$/letsplay/src/main/resources/db/changelog/dbchangelog.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,7 +77,23 @@
       <recent name="com.mariekd.letsplay.app.dto.mappers" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Spring Boot.LetsplayApplication">
+    <configuration name="LetsplayApplicationTests.contextLoads" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="letsplay" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.mariekd.letsplay.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.mariekd.letsplay" />
+      <option name="MAIN_CLASS_NAME" value="com.mariekd.letsplay.LetsplayApplicationTests" />
+      <option name="METHOD_NAME" value="contextLoads" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="LetsplayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="letsplay" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.mariekd.letsplay.LetsplayApplication" />
@@ -112,6 +101,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.LetsplayApplicationTests.contextLoads" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -124,7 +118,7 @@
       <workItem from="1708091977856" duration="2139000" />
       <workItem from="1708867564729" duration="1649000" />
       <workItem from="1708870117454" duration="1238000" />
-      <workItem from="1709887103426" duration="7826000" />
+      <workItem from="1709887103426" duration="8389000" />
     </task>
     <servers />
   </component>

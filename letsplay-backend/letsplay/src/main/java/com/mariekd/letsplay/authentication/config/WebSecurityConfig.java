@@ -17,6 +17,7 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -51,13 +52,19 @@ public class WebSecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http, UserDetailsServiceImpl userDetailsService) throws Exception {
         http
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/**").permitAll() // à modifier pour que seule la création soit accessible
+                        .requestMatchers("/api/users/register").permitAll()
+                        .requestMatchers("/api/users/login").permitAll()
+                        .requestMatchers("/api/users/logout").permitAll()
+                        .requestMatchers("/api/ads/get/**").permitAll()
+                        //.requestMatchers("/**").permitAll() // à modifier pour que seule la création soit accessible
                         .anyRequest().authenticated()
-
                 )
                 .csrf(AbstractHttpConfigurer::disable
                 );
+
         http.authenticationProvider(authenticationProvider(userDetailsService));
+
+        http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
 

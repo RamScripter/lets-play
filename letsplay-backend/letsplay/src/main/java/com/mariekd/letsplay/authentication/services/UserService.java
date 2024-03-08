@@ -1,6 +1,7 @@
 package com.mariekd.letsplay.authentication.services;
 
 import com.mariekd.letsplay.authentication.entities.User;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,4 +20,6 @@ public interface UserService {
     User createUser(User user);
     User updateUser(UUID id, User user);
     void deleteUser(UUID id);
+
+    User getUserFromRequest (HttpServletRequest request);
 }

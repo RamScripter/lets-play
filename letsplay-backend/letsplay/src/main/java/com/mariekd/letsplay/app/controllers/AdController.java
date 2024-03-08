@@ -14,16 +14,9 @@ import com.mariekd.letsplay.app.services.implementation.StyleServiceImpl;
 import com.mariekd.letsplay.authentication.entities.User;
 import com.mariekd.letsplay.authentication.jwt.JwtService;
 import com.mariekd.letsplay.authentication.services.implementations.UserServiceImpl;
-import io.jsonwebtoken.JwtException;
-import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
-import org.apache.coyote.Response;
-import org.hibernate.annotations.NotFound;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
@@ -34,16 +27,16 @@ import java.util.*;
 public class AdController {
 
     private final AdServiceImpl adService;
-    private final JwtService jwtService;
     private final UserServiceImpl userService;
     private final MusicianTypeServiceImpl musicianTypeService;
     private final StyleServiceImpl styleService;
     private final LocationServiceImpl locationService;
 
 
-    public AdController(AdServiceImpl adService, JwtService jwtService, UserServiceImpl userService, MusicianTypeServiceImpl musicianTypeService, StyleServiceImpl styleService, LocationServiceImpl locationService) {
+    public AdController(AdServiceImpl adService, UserServiceImpl userService,
+                        MusicianTypeServiceImpl musicianTypeService, StyleServiceImpl styleService,
+                        LocationServiceImpl locationService) {
         this.adService = adService;
-        this.jwtService = jwtService;
         this.userService = userService;
         this.musicianTypeService = musicianTypeService;
         this.styleService = styleService;
@@ -66,23 +59,11 @@ public class AdController {
         }
     }
 
-    private String getJwtFromRequest(HttpServletRequest request) {
-        Cookie[] cookies = request.getCookies();
-        if (cookies != null) {
-            for (Cookie cookie : cookies) {
-                if (cookie.getName().equals("jwt")) {
-                    return cookie.getValue();
-                }
-            }
-        }
-        return null;
-    }
-
     @PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
     @PostMapping("/create")
     public ResponseEntity<?> createAd(@RequestBody AppRequest creatingAd, HttpServletRequest request) {
 
-        User postingUser = getUserFromRequest(request);
+        User postingUser = userService.getUserFromRequest(request);
 
         Date currentDate = new Date(System.currentTimeMillis());
 
@@ -129,7 +110,7 @@ public class AdController {
     @PutMapping("/{id}")
     public ResponseEntity<?> updateAdByUser(@PathVariable int id, @RequestBody AppRequest updatingAd, HttpServletRequest request) {
 
-        User postingUser = getUserFromRequest(request);
+        User postingUser = userService.getUserFromRequest(request);
 
         try {
             if (!isUserAdAuthor(id, postingUser.getName())) { //TODO : écrire test pour valider qu'un user ne peut pas modifier l'annonce d'un autre user
@@ -171,7 +152,7 @@ public class AdController {
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteAdByUser(@PathVariable int id, HttpServletRequest request) {
 
-        User postingUser = getUserFromRequest(request);
+        User postingUser = userService.getUserFromRequest(request);
 
         try {
             if (!isUserAdAuthor(id, postingUser.getName())) {
@@ -198,22 +179,6 @@ public class AdController {
             return ResponseEntity.ok().body("Ad deleted");
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Error deleting ad");
-        }
-    }
-
-    public User getUserFromRequest (HttpServletRequest request) {
-
-        SecurityContextHolder.getContext().getAuthentication().getAuthorities();
-
-        String userName;
-
-        try {
-            userName = jwtService.getUserNameFromJwtToken(getJwtFromRequest(request));
-            return userService.getUserByEmail(userName);
-        } catch (JwtException e) {
-            throw new AccessDeniedException("Invalid token"); //TODO : mieux gérer les try/catch
-        } catch (Exception e) {
-            throw new UsernameNotFoundException("Unknown user");
         }
     }
 

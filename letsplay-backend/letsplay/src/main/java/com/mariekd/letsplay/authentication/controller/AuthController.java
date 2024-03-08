@@ -6,15 +6,20 @@ import com.mariekd.letsplay.authentication.payload.request.LoginRequest;
 import com.mariekd.letsplay.authentication.entities.User;
 import com.mariekd.letsplay.authentication.models.UserInfo;
 import com.mariekd.letsplay.authentication.services.implementations.UserServiceImpl;
+import io.jsonwebtoken.JwtException;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.security.core.context.SecurityContextHolder;
 
@@ -78,7 +83,7 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<?> createUser(@RequestBody User user) {
+    public ResponseEntity<?> createUser(@RequestBody User user) { //TODO : depuis l'app, possibilité de ne créer qu'un user, pas un admin
         try {
             if (!userService.existsByEmail(user.getEmail()) && !userService.existsByUserName(user.getName())) {
                 userService.createUser(user);
@@ -95,16 +100,43 @@ public class AuthController {
         }
     }
 
-    @PreAuthorize("hasRole('ADMIN') or hasRole('USER')") // TODO : créer deux routes : générale pour les admins, ne peut modifier que SON compte pour les users
+    @PreAuthorize("hasRole('USER')") // TODO : créer deux routes : générale pour les admins, ne peut modifier que SON compte pour les users
     @PutMapping("/{id}")
-    public User updateUser(@PathVariable UUID id, @RequestBody User user) {
-        return userService.updateUser(id, user);
+    public User updateUser(@PathVariable UUID id, @RequestBody User user, HttpServletRequest request) {
+
+        if (isUserAuthorizedToModify(id, request)) {
+            return userService.updateUser(id, user);
+        } else {
+            throw new AccessDeniedException("You are not authorized to modify this user");
+        }
     }
 
-    @PreAuthorize("hasRole('ADMIN') or hasRole('USER')") // TODO : créer deux routes : générale pour les admins, ne peut supprimer que SON compte pour les users
+    @PreAuthorize("hasRole('USER')")
     @DeleteMapping("/{id}")
-    public void deleteUser(@PathVariable UUID id) {
-        userService.deleteUser(id);
+    public void deleteUser(@PathVariable UUID id, HttpServletRequest request){
+
+        if (isUserAuthorizedToModify(id, request)) {
+            userService.deleteUser(id);
+        } else {
+            throw new AccessDeniedException("You are not authorized to delete this user");
+        }
+    }
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @DeleteMapping("/admin/{id}")
+    public void deleteUserByAdmin(@PathVariable UUID id, HttpServletRequest request){
+            userService.deleteUser(id);
+    }
+
+
+    public boolean isUserAuthorizedToModify(UUID userId, HttpServletRequest request) {
+        User connectedUser = userService.getUserFromRequest(request);
+
+        if (connectedUser.getId().equals(userId)) {
+            return true;
+        } else {
+            throw new AccessDeniedException("You are not authorized to modify this user");
+        }
     }
 
 }

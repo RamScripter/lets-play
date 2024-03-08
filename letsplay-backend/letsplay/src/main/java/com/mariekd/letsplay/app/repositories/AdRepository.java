@@ -6,10 +6,10 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public interface AdRepository extends JpaRepository <Ad, Integer> {
 
-    @Query("SELECT COUNT(a) > 0 FROM Ad a WHERE a.title = :title")
-    Boolean existsAdByTitle (@Param("title") String title);
-
+    Optional<Ad> findByTitle (String title);
 }

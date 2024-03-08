@@ -96,4 +96,11 @@ public class User {
     public void setAds(Set<Ad> ads) {
         this.ads = ads;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

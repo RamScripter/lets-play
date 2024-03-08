@@ -3,6 +3,7 @@ package com.mariekd.letsplay.app.entities;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -48,5 +49,26 @@ public class Location {
     public Set<Ad> getAds() { return ads; }
 
     public void setAds(Set<Ad> ads) { this.ads = ads; }
+
+    @Override
+    public String toString() {
+        return "Location{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Location)) return false;
+        Location location = (Location) o;
+        return getId() == location.getId() && getName().equals(location.getName());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getName());
+    }
 }
 

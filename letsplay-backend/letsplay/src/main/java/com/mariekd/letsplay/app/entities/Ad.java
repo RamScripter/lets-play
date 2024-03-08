@@ -4,6 +4,7 @@ import com.mariekd.letsplay.app.dto.mappers.MusicianTypeMapper;
 import com.mariekd.letsplay.authentication.entities.User;
 import jakarta.persistence.*;
 import java.util.Date;
+import java.util.Objects;
 import java.util.UUID;
 
 import lombok.*;
@@ -14,6 +15,7 @@ import lombok.*;
 public class Ad {
     @Id
     @Column(updatable = false, nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column(nullable = false, name="created_at")
@@ -130,5 +132,33 @@ public class Ad {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        return "Ad{" +
+                "id=" + id +
+                ", createdAt=" + createdAt +
+                ", postedBy=" + postedBy +
+                ", title='" + title + '\'' +
+                ", seekingMusicianType=" + seekingMusicianType +
+                ", image='" + image + '\'' +
+                ", styleType=" + styleType +
+                ", location=" + location +
+                ", description='" + description + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Ad ad = (Ad) o;
+        return id == ad.id && createdAt.equals(ad.createdAt) && postedBy.equals(ad.postedBy) && title.equals(ad.title) && seekingMusicianType.equals(ad.seekingMusicianType) && image.equals(ad.image) && styleType.equals(ad.styleType) && location.equals(ad.location) && description.equals(ad.description);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, createdAt, postedBy, title, seekingMusicianType, image, styleType, location, description);
     }
 }

@@ -108,7 +108,7 @@
 
     <changeSet id="3" author="Marie-KD"> <!-- Creation of ads table -->
         <createTable  tableName="ad" schemaName="music">
-            <column  name="id"  type="integer">
+            <column  name="id"  type="int">
                 <constraints  primaryKey="true"  nullable="false"/>
             </column>
             <column  name="created_at"  type="date">
@@ -136,9 +136,17 @@
                 <constraints nullable="true"/>
             </column>
         </createTable>
+        <addAutoIncrement columnDataType="int"
+                          columnName="id"
+                          defaultOnNull="false"
+                          generationType="ALWAYS"
+                          incrementBy="1"
+                          schemaName="music"
+                          tableName="ad"/>
+
     </changeSet>
 
-    <changeSet id="5" author="Marie-KD"> <!-- Adding foreign keys to ads table -->
+    <changeSet id="4" author="Marie-KD"> <!-- Adding foreign keys to ads table -->
         <addForeignKeyConstraint
                 baseTableSchemaName="music"
                 baseTableName="ad"
@@ -175,7 +183,7 @@
         />
     </changeSet>
 
-    <changeSet id="6" author="Marie-KD"> <!-- Insertion of musician type, style, location -->
+    <changeSet id="5" author="Marie-KD"> <!-- Insertion of musician type, style, location -->
 
         <insert tableName="musician_type">
             <column name="name" value="band" />
@@ -203,7 +211,7 @@
 
 
     <!--    Inserts à partir de ce point -->
-    <changeSet id="7" author="Marie-KD"> <!-- Insertion of roles -->
+    <changeSet id="6" author="Marie-KD"> <!-- Insertion of roles -->
         <insert tableName="roles" schemaName="music">
             <column name="name" value="USER" />
         </insert>
@@ -212,7 +220,7 @@
         </insert>
     </changeSet>
 
-    <changeSet id="8" author="Marie-KD"> <!-- Insertion of regions -->
+    <changeSet id="7" author="Marie-KD"> <!-- Insertion of regions -->
         <insert tableName="location" schemaName="music">
             <column name="name" value="Auvergne-Rhône-Alpes" />
         </insert>
@@ -254,7 +262,7 @@
         </insert>
     </changeSet>
 
-    <changeSet id="9" author="Marie-KD"> <!-- Insertion of styles -->
+    <changeSet id="8" author="Marie-KD"> <!-- Insertion of styles -->
         <insert tableName="style" schemaName="music">
             <column name="name" value="death metal" />
         </insert>
@@ -264,7 +272,7 @@
     </changeSet>
 
 
-    <changeSet id="4" author="Marie-KD"> <!-- Creation of many-to-many tables for ads liking -->
+    <changeSet id="9" author="Marie-KD"> <!-- Creation of many-to-many tables for ads liking -->
         <createTable  tableName="users_liked_ads" schemaName="music">
             <column  name="user_id"  type="UUID">
                 <constraints  nullable="false"

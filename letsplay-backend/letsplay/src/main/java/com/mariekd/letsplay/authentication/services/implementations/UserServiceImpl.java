@@ -45,6 +45,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public boolean existsByUserName(String userName) { return userRepository.existsByName(userName); }
+
+    @Override
     @Transactional(propagation = Propagation.REQUIRED)
     public User createUser(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));

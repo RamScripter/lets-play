@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AdServiceImpl implements AdService {
@@ -24,13 +25,13 @@ public class AdServiceImpl implements AdService {
     }
 
     @Override
-    public Ad getAdById(int id) {
-        return adRepository.findById(id).orElse(null);
+    public Optional<Ad> getAdById(int id) {
+        return adRepository.findById(id);
     }
 
     @Override
-    public Boolean existsAdByTitle(String title) {
-        return adRepository.existsAdByTitle(title);
+    public Optional<Ad> getAdByTitle(String title) {
+        return adRepository.findByTitle(title);
     }
 
     @Override

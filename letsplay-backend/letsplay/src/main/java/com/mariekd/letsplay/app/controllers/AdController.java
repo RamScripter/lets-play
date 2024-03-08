@@ -8,18 +8,25 @@ import com.mariekd.letsplay.app.entities.MusicianType;
 import com.mariekd.letsplay.app.entities.Style;
 import com.mariekd.letsplay.app.request.AppRequest;
 import com.mariekd.letsplay.app.services.implementation.AdServiceImpl;
+import com.mariekd.letsplay.app.services.implementation.LocationServiceImpl;
+import com.mariekd.letsplay.app.services.implementation.MusicianTypeServiceImpl;
+import com.mariekd.letsplay.app.services.implementation.StyleServiceImpl;
 import com.mariekd.letsplay.authentication.entities.User;
 import com.mariekd.letsplay.authentication.jwt.JwtService;
 import com.mariekd.letsplay.authentication.services.implementations.UserServiceImpl;
+import io.jsonwebtoken.JwtException;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
+import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/ads")
@@ -29,23 +36,34 @@ public class AdController {
     private final AdServiceImpl adService;
     private final JwtService jwtService;
     private final UserServiceImpl userService;
+    private final MusicianTypeServiceImpl musicianTypeService;
+    private final StyleServiceImpl styleService;
+    private final LocationServiceImpl locationService;
 
-    public AdController(AdServiceImpl adService, JwtService jwtService, UserServiceImpl userService) {
+
+    public AdController(AdServiceImpl adService, JwtService jwtService, UserServiceImpl userService, MusicianTypeServiceImpl musicianTypeService, StyleServiceImpl styleService, LocationServiceImpl locationService) {
         this.adService = adService;
         this.jwtService = jwtService;
         this.userService = userService;
+        this.musicianTypeService = musicianTypeService;
+        this.styleService = styleService;
+        this.locationService = locationService;
     }
 
-    @GetMapping("/all")
+    @GetMapping("/get/all")
     public List<AdDTO> getAllAds() {
         List<Ad> ads = adService.getAllAds();
         return ads.stream().map(AdMapper::toAdDTO).toList();
     }
 
-    @GetMapping("/{id}")
-    public AdDTO getAdById(@PathVariable int id) {
-        Ad ad = adService.getAdById(id);
-        return AdMapper.toAdDTO(ad);
+    @GetMapping("/get/{id}")
+    public ResponseEntity<?> getAdById(@PathVariable int id) {
+        Optional<Ad> ad = adService.getAdById(id);
+        if (ad.isPresent()){
+            return ResponseEntity.ok(AdMapper.toAdDTO(ad.get()));
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     private String getJwtFromRequest(HttpServletRequest request) {
@@ -62,37 +80,54 @@ public class AdController {
 
     @PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
     @PostMapping("/create")
-    public ResponseEntity<?> createAd(@RequestBody AppRequest creatingAd, HttpServletRequest request) { // Utiliser des Strings et récupérer les infos puis ad builder ?
-        final String UserName = jwtService.getUserNameFromJwtToken(getJwtFromRequest(request));
-        final User postingUser = userService.getUserByEmail(UserName);
+    public ResponseEntity<?> createAd(@RequestBody AppRequest creatingAd, HttpServletRequest request) {
 
-        LocalDate localDate = LocalDate.now();
-        final Date currentDate = new Date(localDate.atStartOfDay()).toEpochSecond() * 1000);
+        SecurityContextHolder.getContext().getAuthentication().getAuthorities();
 
-        //TODO : Générer la date au format java.util.Date et pas LocalDate
-        //TODO : créer les repositories et services pour les entités MusicianType, Style et Location
-        //TODO : récupérer les objets MusicianType, Style et Location depuis les repositories (getByName)
 
-        final MusicianType musicianType = MusicianTypeRepository.getByName(creatingAd.musicianType());
-        final Style style = StyleRepository.getByName(creatingAd.style());
-        final Location location = LocationRepository.getByName(creatingAd.location());
+        String userName;
+        User postingUser;
+
+        try {
+            userName = jwtService.getUserNameFromJwtToken(getJwtFromRequest(request));
+            postingUser = userService.getUserByEmail(userName);
+        } catch (JwtException e) {
+            throw new AccessDeniedException("Invalid token");
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Unknown user");
+        }
+
+        Date currentDate = new Date(System.currentTimeMillis());
+
+        final MusicianType adMusicianType = musicianTypeService.findByName(creatingAd.musicianType());
+        final Style adStyle = styleService.findByName(creatingAd.style());
+        final Location adLocation = locationService.findByName(creatingAd.location());
 
         Ad ad = new Ad();
-        ad.setCreatedAt(Date.from(LocalDate.now()));
+        ad.setCreatedAt(Date.from(currentDate.toInstant()));
         ad.setPostedBy(postingUser);
         ad.setTitle(creatingAd.title());
-        ad.setSeekingMusicianType(creatingAd.musicianType());
-        ad.setStyleType(creatingAd.style());
-        ad.setLocation(creatingAd.location());
+        ad.setSeekingMusicianType(adMusicianType);
+        ad.setStyleType(adStyle);
+        ad.setLocation(adLocation);
         ad.setDescription(creatingAd.description());
         ad.setImage(creatingAd.image());
 
 
         try {
-            if (!adService.existsAdByTitle(creatingAd.title())) {
+            Optional<Ad> existingAd = adService.getAdByTitle(creatingAd.title());
+            if (existingAd.isPresent()) {
                 return ResponseEntity.badRequest().body("Ad with this title already exists");
             } else {
-                return ResponseEntity.ok(adService.createAd(ad));
+                try {
+                    adService.createAd(ad);
+                    AdDTO adDTO = AdMapper.toAdDTO(ad);
+                    return ResponseEntity.ok(adDTO);
+                } catch (Exception e) {
+
+                    return ResponseEntity.badRequest().body(e.getMessage());
+                }
+
             }
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Error creating ad");

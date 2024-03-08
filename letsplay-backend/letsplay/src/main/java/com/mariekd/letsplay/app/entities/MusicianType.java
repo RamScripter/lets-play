@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import lombok.*;
 
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -49,5 +50,26 @@ public class MusicianType {
     public Set<Ad> getAds() { return ads; }
 
     public void setAds(Set<Ad> ads) { this.ads = ads; }
+
+    @Override
+    public String toString() {
+        return "MusicianType{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof MusicianType)) return false;
+        MusicianType musicianType = (MusicianType) o;
+        return getId() == musicianType.getId() && getName().equals(musicianType.getName());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getName());
+    }
 }
 

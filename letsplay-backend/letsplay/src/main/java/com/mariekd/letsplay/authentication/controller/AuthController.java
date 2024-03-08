@@ -58,6 +58,8 @@ public class AuthController {
                 .map(GrantedAuthority::getAuthority)
                 .toList();
 
+        LOGGER.info("User {} logged in", userDetails.getUsername());
+
         return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, jwt)
                         .body(new UserInfoResponse(userDetails.id(), userDetails.getUsername(), roles));
     }
@@ -70,7 +72,6 @@ public class AuthController {
     }
 
     @GetMapping("/all")
-    @CrossOrigin
     public List<User> getAllUsers() {
         LOGGER.info("Getting all users: {} ", userService.getAllUsers());
         return userService.getAllUsers();
@@ -79,11 +80,11 @@ public class AuthController {
     @PostMapping("/register")
     public ResponseEntity<?> createUser(@RequestBody User user) {
         try {
-            if (!userService.existsByEmail(user.getEmail())) {
+            if (!userService.existsByEmail(user.getEmail()) && !userService.existsByUserName(user.getName())) {
                 userService.createUser(user);
                 return ResponseEntity.ok(new UserInfoResponse(user.getId(), user.getEmail(), List.of(user.getRoles().toString())));
             } else {
-                throw new IllegalArgumentException("User with email " + user.getEmail() + " already exists");
+                throw new IllegalArgumentException("User with email " + user.getEmail() + " or name " + user.getName() + " already exists"); // TODO : créer une exception spécifique
             }
         } catch (final IllegalArgumentException e) {
             LOGGER.error("Error creating user: " + e.getMessage());

@@ -18,7 +18,7 @@ public class Location {
     @Column(length = 50, nullable = false,  name="name")
     private String name;
 
-    @OneToMany(mappedBy = "location", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "location", fetch = FetchType.LAZY)
     private Set<Ad> ads;
 
     public Location(int id, String name, Set<Ad> ads) {

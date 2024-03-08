@@ -5,7 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3baf2b4f-eeef-49c4-b2cc-c86a1855d24e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/authentication/config/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/authentication/config/WebSecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/controllers/AdController.java" beforeDir="false" afterPath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/controllers/AdController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/dto/AdDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/dto/AdDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/dto/mappers/AdMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/dto/mappers/AdMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/entities/Ad.java" beforeDir="false" afterPath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/entities/Ad.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/entities/Location.java" beforeDir="false" afterPath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/entities/Location.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/entities/MusicianType.java" beforeDir="false" afterPath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/entities/MusicianType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/entities/Style.java" beforeDir="false" afterPath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/entities/Style.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/repositories/AdRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/repositories/AdRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/request/AppRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/request/AppRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/services/AdService.java" beforeDir="false" afterPath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/services/AdService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/services/implementation/AdServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/services/implementation/AdServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/letsplay/src/main/resources/db/changelog/dbchangelog.xml" beforeDir="false" afterPath="$PROJECT_DIR$/letsplay/src/main/resources/db/changelog/dbchangelog.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -118,7 +130,7 @@
       <workItem from="1708091977856" duration="2139000" />
       <workItem from="1708867564729" duration="1649000" />
       <workItem from="1708870117454" duration="1238000" />
-      <workItem from="1709887103426" duration="8389000" />
+      <workItem from="1709887103426" duration="15258000" />
     </task>
     <servers />
   </component>
@@ -144,74 +156,14 @@
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/services/implementation/AdServiceImpl.java</url>
-          <line>28</line>
-          <option name="timeStamp" value="26" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/controllers/AdController.java</url>
-          <line>90</line>
-          <option name="timeStamp" value="44" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/controllers/AdController.java</url>
-          <line>119</line>
-          <option name="timeStamp" value="61" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/controllers/AdController.java</url>
-          <line>127</line>
+          <line>118</line>
           <option name="timeStamp" value="64" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/controllers/AdController.java</url>
-          <line>117</line>
-          <option name="timeStamp" value="65" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/controllers/AdController.java</url>
-          <line>124</line>
+          <line>115</line>
           <option name="timeStamp" value="68" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/controllers/AdController.java</url>
-          <line>60</line>
-          <option name="timeStamp" value="69" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/controllers/AdController.java</url>
-          <line>64</line>
-          <option name="timeStamp" value="70" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/controllers/AdController.java</url>
-          <line>88</line>
-          <option name="timeStamp" value="74" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/controllers/AdController.java</url>
-          <line>94</line>
-          <option name="timeStamp" value="75" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/controllers/AdController.java</url>
-          <line>96</line>
-          <option name="timeStamp" value="76" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/controllers/AdController.java</url>
-          <line>87</line>
-          <option name="timeStamp" value="80" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/controllers/AdController.java</url>
-          <line>84</line>
-          <option name="timeStamp" value="81" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/authentication/config/WebSecurityConfig.java</url>
-          <line>58</line>
-          <option name="timeStamp" value="83" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/controllers/AdController.java</url>
@@ -219,34 +171,29 @@
           <option name="timeStamp" value="84" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>jar://$MAVEN_REPOSITORY$/org/springframework/security/spring-security-config/6.2.0/spring-security-config-6.2.0.jar!/org/springframework/security/config/annotation/web/configurers/AuthorizeHttpRequestsConfigurer.class</url>
-          <line>205</line>
-          <option name="timeStamp" value="85" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/authentication/jwt/JwtAuthenticationFilter.java</url>
-          <line>55</line>
-          <option name="timeStamp" value="86" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/authentication/jwt/AuthEntryPointJwt.java</url>
           <line>37</line>
           <option name="timeStamp" value="88" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/authentication/jwt/JwtAuthenticationFilter.java</url>
-          <line>37</line>
-          <option name="timeStamp" value="89" />
+          <url>file://$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/services/implementation/AdServiceImpl.java</url>
+          <line>54</line>
+          <option name="timeStamp" value="99" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/authentication/jwt/JwtService.java</url>
-          <line>63</line>
-          <option name="timeStamp" value="91" />
+          <url>file://$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/controllers/AdController.java</url>
+          <line>181</line>
+          <option name="timeStamp" value="100" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/authentication/config/WebSecurityConfig.java</url>
-          <line>62</line>
-          <option name="timeStamp" value="92" />
+          <url>file://$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/controllers/AdController.java</url>
+          <line>131</line>
+          <option name="timeStamp" value="102" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/controllers/AdController.java</url>
+          <line>127</line>
+          <option name="timeStamp" value="103" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/authentication/controller/AuthController.java</url>
@@ -265,15 +212,6 @@
             <option name="WATCH_EXIT" value="false" />
           </properties>
           <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-commons/3.2.0/spring-data-commons-3.2.0.jar!/org/springframework/data/repository/CrudRepository.class</url>
-          <line>11</line>
-          <properties class="org.springframework.data.repository.CrudRepository" method="save">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="66" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/letsplay/src/main/java/com/mariekd/letsplay/app/controllers/AdController.java</url>

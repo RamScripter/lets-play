@@ -18,15 +18,15 @@ import io.jsonwebtoken.JwtException;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import org.apache.coyote.Response;
+import org.hibernate.annotations.NotFound;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @RestController
 @RequestMapping("/api/ads")
@@ -82,25 +82,16 @@ public class AdController {
     @PostMapping("/create")
     public ResponseEntity<?> createAd(@RequestBody AppRequest creatingAd, HttpServletRequest request) {
 
-        SecurityContextHolder.getContext().getAuthentication().getAuthorities();
-
-
-        String userName;
-        User postingUser;
-
-        try {
-            userName = jwtService.getUserNameFromJwtToken(getJwtFromRequest(request));
-            postingUser = userService.getUserByEmail(userName);
-        } catch (JwtException e) {
-            throw new AccessDeniedException("Invalid token");
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body("Unknown user");
-        }
+        User postingUser = getUserFromRequest(request);
 
         Date currentDate = new Date(System.currentTimeMillis());
 
         final MusicianType adMusicianType = musicianTypeService.findByName(creatingAd.musicianType());
-        final Style adStyle = styleService.findByName(creatingAd.style());
+        final Set<Style> adStyles = new HashSet<>();
+        for (String styleName : creatingAd.styles()) {
+            adStyles.add(styleService.findByName(styleName));
+        }
+
         final Location adLocation = locationService.findByName(creatingAd.location());
 
         Ad ad = new Ad();
@@ -108,7 +99,7 @@ public class AdController {
         ad.setPostedBy(postingUser);
         ad.setTitle(creatingAd.title());
         ad.setSeekingMusicianType(adMusicianType);
-        ad.setStyleType(adStyle);
+        ad.setStyles(adStyles);
         ad.setLocation(adLocation);
         ad.setDescription(creatingAd.description());
         ad.setImage(creatingAd.image());
@@ -134,14 +125,104 @@ public class AdController {
         }
     }
 
-    @PreAuthorize("hasRole('ADMIN') or hasRole('USER')") //TODO : créer deux routes : générale pour les admins, ne peut modifier que SES annonces pour les users
-    @PutMapping("/update/{id}")
-    public Ad updateAd() {
-        return null;
+    @PreAuthorize("hasRole('USER')")
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updateAdByUser(@PathVariable int id, @RequestBody AppRequest updatingAd, HttpServletRequest request) {
+
+        User postingUser = getUserFromRequest(request);
+
+        try {
+            if (!isUserAdAuthor(id, postingUser.getName())) { //TODO : écrire test pour valider qu'un user ne peut pas modifier l'annonce d'un autre user
+                return ResponseEntity.badRequest().body("You can only update your own ads");
+            }
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+
+        Optional<Ad> ad = adService.getAdById(id);
+
+        if (ad.isPresent()) {
+            final MusicianType adMusicianType = musicianTypeService.findByName(updatingAd.musicianType());
+            final Set<Style> adStyles = new HashSet<>();
+            for (String styleName : updatingAd.styles()) {
+                adStyles.add(styleService.findByName(styleName));
+            }
+            final Location adLocation = locationService.findByName(updatingAd.location());
+
+            ad.get().setTitle(updatingAd.title()); //TODO : créer un ad builder
+            ad.get().setSeekingMusicianType(adMusicianType);
+            ad.get().setStyles(adStyles);
+            ad.get().setLocation(adLocation);
+            ad.get().setDescription(updatingAd.description());
+            ad.get().setImage(updatingAd.image());
+
+            try {
+                adService.updateAd(id, ad.get());
+                return ResponseEntity.ok().body("Ad updated");}
+            catch (Exception e) {
+                return ResponseEntity.badRequest().body("Error updating ad");
+            }
+        } else {
+            return ResponseEntity.badRequest().body("Ad not found");
+        }
     }
 
-    @PreAuthorize("hasRole('ADMIN') or hasRole('USER')") //TODO : créer deux routes : générale pour les admins, ne peut supprimer que SES annonces pour les users
+    @PreAuthorize("hasRole('USER')")
     @DeleteMapping("/delete/{id}")
-    public void deleteAd() {
+    public ResponseEntity<?> deleteAdByUser(@PathVariable int id, HttpServletRequest request) {
+
+        User postingUser = getUserFromRequest(request);
+
+        try {
+            if (!isUserAdAuthor(id, postingUser.getName())) {
+                return ResponseEntity.badRequest().body("You can only delete your own ads");
+            }
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+
+        try {
+            adService.deleteById(id);
+            return ResponseEntity.ok().body("Ad deleted");
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error deleting ad");
+        }
+    }
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @DeleteMapping("/delete/admin/{id}")
+    public ResponseEntity<?> deleteAdByAdmin(@PathVariable int id) {
+
+        try {
+            adService.deleteById(id);
+            return ResponseEntity.ok().body("Ad deleted");
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error deleting ad");
+        }
+    }
+
+    public User getUserFromRequest (HttpServletRequest request) {
+
+        SecurityContextHolder.getContext().getAuthentication().getAuthorities();
+
+        String userName;
+
+        try {
+            userName = jwtService.getUserNameFromJwtToken(getJwtFromRequest(request));
+            return userService.getUserByEmail(userName);
+        } catch (JwtException e) {
+            throw new AccessDeniedException("Invalid token"); //TODO : mieux gérer les try/catch
+        } catch (Exception e) {
+            throw new UsernameNotFoundException("Unknown user");
+        }
+    }
+
+    public boolean isUserAdAuthor(int adId, String currentUserName) throws Exception {
+        Optional<Ad> ad = adService.getAdById(adId);
+        if (ad.isPresent()) {
+            return ad.get().getPostedBy().getName().equals(currentUserName);
+        } else {
+            throw new Exception("Ad not found"); //TODO : créer exception spécifique
+        }
     }
 }

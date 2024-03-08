@@ -1,8 +1,10 @@
 package com.mariekd.letsplay.app.entities;
 
+import com.mariekd.letsplay.authentication.entities.User;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -18,13 +20,22 @@ public class Style {
     @Column(length = 50, nullable = false,  name="name")
     private String name;
 
-    @OneToMany(mappedBy = "styleType", fetch = FetchType.EAGER)
-    private Set<Ad> ads;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "ads_styles",
+            joinColumns = @JoinColumn(name = "style_id"),
+            inverseJoinColumns = @JoinColumn(name = "ad_id"))
+    private Set<Ad> ads = new HashSet<>();
 
     public Style(int id, String name, Set<Ad> ads) {
         this.id = id;
         this.name = name;
-        this.ads = ads;
+        this.ads = new HashSet<>();
+        if (ads != null) {
+            this.ads.addAll(ads);
+            for (Ad ad : ads) {
+                ad.getStyles().add(this);
+            }
+        }
     }
 
     public Style() {

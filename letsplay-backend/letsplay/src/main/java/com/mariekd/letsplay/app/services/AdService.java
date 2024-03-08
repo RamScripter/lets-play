@@ -19,5 +19,5 @@ public interface AdService {
 
     Ad updateAd(int id, Ad ad);
 
-    void deleteAd(int id);
+    void deleteById(int id);
 }

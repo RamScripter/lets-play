@@ -13,7 +13,7 @@ public class AdDTO {
     private String title;
     private String seekingMusicianType;
     private String image;
-    private String styleType;
+    private String[] styles;
     private String location;
     private String description;
 
@@ -26,7 +26,7 @@ public class AdDTO {
         this.title = title;
         this.seekingMusicianType = seekingMusicianType;
         this.image = image;
-        this.styleType = styleType;
+        this.styles = styles;
         this.location = location;
         this.description = description;
     }

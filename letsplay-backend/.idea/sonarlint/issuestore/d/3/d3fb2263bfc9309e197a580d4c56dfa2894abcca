@@ -1,13 +1,0 @@
-
-X
-java:S1128"6Remove this unused import 'lombok.AllArgsConstructor'.(´œ¾öùÿÿÿÿ8Øôä„Ş1
-G
-java:S1128"*Remove this unused import 'lombok.Getter'.(ùÒµÙ8Øôä„Ş1
-R
-java:S1128"5Remove this unused import 'lombok.NoArgsConstructor'.(¸¨›8Øôä„Ş1
-G
-java:S1128"*Remove this unused import 'lombok.Setter'.(ó¸çµ8Øôä„Ş1
-S
-java:S1128	"1Remove this unused import 'java.io.Serializable'.(èãîÂÿÿÿÿÿ8Øôä„Ş1
-M
-java:S1128"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ8Øôä„Ş1

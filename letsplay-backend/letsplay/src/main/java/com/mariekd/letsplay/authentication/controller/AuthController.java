@@ -1,13 +1,14 @@
 package com.mariekd.letsplay.authentication.controller;
 
+import com.mariekd.letsplay.authentication.entities.Role;
+import com.mariekd.letsplay.authentication.payload.request.SignupRequest;
 import com.mariekd.letsplay.authentication.payload.response.UserInfoResponse;
 import com.mariekd.letsplay.authentication.jwt.JwtService;
 import com.mariekd.letsplay.authentication.payload.request.LoginRequest;
 import com.mariekd.letsplay.authentication.entities.User;
 import com.mariekd.letsplay.authentication.models.UserInfo;
+import com.mariekd.letsplay.authentication.services.implementations.RoleServiceImpl;
 import com.mariekd.letsplay.authentication.services.implementations.UserServiceImpl;
-import io.jsonwebtoken.JwtException;
-import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -19,7 +20,6 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.security.core.context.SecurityContextHolder;
 
@@ -38,12 +38,14 @@ public class AuthController {
     private final AuthenticationManager authenticationManager;
     private final JwtService jwtService;
     private final UserServiceImpl userService;
+    private final RoleServiceImpl roleService;
 
     public AuthController(AuthenticationManager authenticationManager,
-                          JwtService jwtService, UserServiceImpl userService) {
+                          JwtService jwtService, UserServiceImpl userService, RoleServiceImpl roleService) {
         this.authenticationManager = authenticationManager;
         this.jwtService = jwtService;
         this.userService = userService;
+        this.roleService = roleService;
     }
 
     @PostMapping("/login")
@@ -76,6 +78,7 @@ public class AuthController {
                 .body("Logged out successfully");
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/all")
     public List<User> getAllUsers() {
         LOGGER.info("Getting all users: {} ", userService.getAllUsers());
@@ -83,19 +86,23 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<?> createUser(@RequestBody User user) { //TODO : depuis l'app, possibilité de ne créer qu'un user, pas un admin
+    public ResponseEntity<?> createUser(@RequestBody SignupRequest userInfos) {
         try {
-            if (!userService.existsByEmail(user.getEmail()) && !userService.existsByUserName(user.getName())) {
+            if (!userService.existsByEmail(userInfos.email()) && !userService.existsByUserName(userInfos.username())) {
+                Role userRole = roleService.findByName("USER");
+
+                User user = new User(UUID.randomUUID() , userInfos.username(), userInfos.email(), userInfos.password(), userRole, null);
+
                 userService.createUser(user);
                 return ResponseEntity.ok(new UserInfoResponse(user.getId(), user.getEmail(), List.of(user.getRoles().toString())));
             } else {
-                throw new IllegalArgumentException("User with email " + user.getEmail() + " or name " + user.getName() + " already exists"); // TODO : créer une exception spécifique
+                throw new IllegalArgumentException("User with email " + userInfos.email() + " or name " + userInfos.username() + " already exists"); // TODO : créer une exception spécifique
             }
         } catch (final IllegalArgumentException e) {
-            LOGGER.error("Error creating user: " + e.getMessage());
+            LOGGER.error("Error creating user: {}", e.getMessage());
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Error creating user: " + e.getMessage());
         } catch (final Exception e) {
-            LOGGER.error("Error creating user: " + e.getMessage());
+            LOGGER.error("Error creating user: {}", e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error creating user: " + e.getMessage());
         }
     }
@@ -124,7 +131,7 @@ public class AuthController {
 
     @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/admin/{id}")
-    public void deleteUserByAdmin(@PathVariable UUID id, HttpServletRequest request){
+    public void deleteUserByAdmin(@PathVariable UUID id){
             userService.deleteUser(id);
     }
 

@@ -107,7 +107,7 @@ public class AuthController {
         }
     }
 
-    @PreAuthorize("hasRole('USER')") // TODO : créer deux routes : générale pour les admins, ne peut modifier que SON compte pour les users
+    @PreAuthorize("hasRole('USER')")
     @PutMapping("/{id}")
     public User updateUser(@PathVariable UUID id, @RequestBody User user, HttpServletRequest request) {
 

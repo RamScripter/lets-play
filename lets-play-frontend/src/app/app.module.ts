@@ -1,6 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
+import { ToastrModule } from 'ngx-toastr';
+
 import { AppRoutingModule } from './modules/app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -11,10 +16,8 @@ import { SingleAdComponent } from './ad-components/single-ad/single-ad.component
 import { SearchComponent } from './search/search.component';
 import { LoginComponent } from './authentication/login/login.component';
 import { SignupComponent } from './authentication/signup/signup.component';
-import { FooterComponent } from './footer/footer.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ToastrModule } from 'ngx-toastr';
-import { FormsModule } from '@angular/forms';
+import { FooterComponent } from './footer/footer.component'; //TODO : réorganiser en plusieurs modules, importer ces modules ici
+
 
 @NgModule({
   declarations: [
@@ -30,6 +33,7 @@ import { FormsModule } from '@angular/forms';
     FooterComponent
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,

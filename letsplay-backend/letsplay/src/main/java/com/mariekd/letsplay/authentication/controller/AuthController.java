@@ -65,10 +65,12 @@ public class AuthController {
                 .map(GrantedAuthority::getAuthority)
                 .toList();
 
-        LOGGER.info("User {} logged in", userDetails.getUsername());
+        User connecterUser = userService.getUserByEmail(userDetails.getUsername());
+
+        LOGGER.info("User {} / {} logged in", userDetails.getUsername(), connecterUser.getName());
 
         return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, jwt)
-                        .body(new UserInfoResponse(userDetails.id(), userDetails.getUsername(), roles));
+                        .body(new UserInfoResponse(userDetails.id(), connecterUser.getName(), roles));
     }
 
     @PostMapping("/logout")

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Ad } from '../../models/ad.model';
-import { AdService } from '../../services/ad.service';
+import { Ad } from '../models/ad.model';
+import { AdService } from '../services/ad.service';
 
 @Component({
   selector: 'app-ads-list',

@@ -5,7 +5,22 @@
         <!-- TO DO : ranger les liens dans une div sans casser l'affichage -->
         <a routerLink="home" routerLinkActive="underline" class="text-white text-xl hover:text-red-600 invisible lg:visible">ACCUEIL</a>
         <a routerLink="search" routerLinkActive="underline" class="text-white text-xl hover:text-red-600 invisible lg:visible">RECHERCHER</a>
-        <a routerLink="login" routerLinkActive="underline" class="text-white text-xl hover:text-red-600 invisible lg:visible">CONNEXION / INSCRIPTION</a>
+       
+        <div class="relative" tabindex="0" (keydown)="handleKeyPress($event)">
+            <a *ngIf="userLoggedIn; else loginLink" (click)="toggleDropdown()" class="text-white text-xl hover:text-red-600 cursor-pointer invisible lg:visible" aria-haspopup="true">
+                {{ userInfos?.username }}
+            </a>
+            <ng-template #loginLink>
+                <a routerLink="login" routerLinkActive="underline" class="text-white text-xl hover:text-red-600 cursor-pointer invisible lg:visible">CONNEXION / INSCRIPTION</a>
+            </ng-template>
+        
+            <!-- Menu déroulant -->
+            <div *ngIf="showDropdown" class="absolute bg-white shadow-md mt-2 py-2 w-32 rounded-md z-10">
+                <!-- Ajoutez ici les liens supplémentaires pour l'utilisateur connecté -->
+                <a routerLink="profile" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Profil</a>
+                <a (click)="logOut()" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Déconnexion</a>
+            </div>
+        </div>
 
         <div class="visible lg:invisible">
             <!-- Bouton pour le menu dépliant (burger menu) -->

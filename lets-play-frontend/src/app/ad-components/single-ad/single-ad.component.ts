@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Ad } from '../../models/ad.model';
-import { AdService } from '../../services/ad.service';
+import { Ad } from '../models/ad.model';
+import { AdService } from '../services/ad.service';
 import {Router, ActivatedRoute} from '@angular/router';
 
 @Component({

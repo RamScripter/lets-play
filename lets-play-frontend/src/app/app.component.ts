@@ -9,6 +9,8 @@ import { initFlowbite } from 'flowbite';
 export class AppComponent {
   title = 'lets-play';
 
+  constructor() {}
+
   ngOnInit() {
     initFlowbite();
   }

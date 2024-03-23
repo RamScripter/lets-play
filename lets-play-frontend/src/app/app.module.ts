@@ -6,6 +6,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 
+import { CloudinaryModule } from '@cloudinary/ng';
+
 import { AppRoutingModule } from './modules/app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -16,7 +18,8 @@ import { SingleAdComponent } from './ad-components/single-ad/single-ad.component
 import { SearchComponent } from './search/search.component';
 import { LoginComponent } from './authentication/login/login.component';
 import { SignupComponent } from './authentication/signup/signup.component';
-import { FooterComponent } from './footer/footer.component'; //TODO : réorganiser en plusieurs modules, importer ces modules ici
+import { FooterComponent } from './footer/footer.component';
+import { ProfileComponent } from './user/profile/profile.component'; //TODO : réorganiser en plusieurs modules, importer ces modules ici
 
 
 @NgModule({
@@ -30,7 +33,8 @@ import { FooterComponent } from './footer/footer.component'; //TODO : réorganis
     SearchComponent,
     LoginComponent,
     SignupComponent,
-    FooterComponent
+    FooterComponent,
+    ProfileComponent
   ],
   imports: [
     HttpClientModule,
@@ -38,7 +42,8 @@ import { FooterComponent } from './footer/footer.component'; //TODO : réorganis
     AppRoutingModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    FormsModule
+    FormsModule,
+    CloudinaryModule
   ],
   providers: [],
   bootstrap: [AppComponent]

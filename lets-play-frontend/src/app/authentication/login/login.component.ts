@@ -24,18 +24,18 @@ export class LoginComponent {
     this.authService.login(username, password).subscribe(
       (response) => {
         console.log(response);
-        this.error = `Vous voilà connecté, ${response.username}. Bonne recherche !`
+        this.error = `Te voilà connecté, ${response.username}. Bonne recherche !`
         this.hasError = true;
         setTimeout(() => {
           this.router.navigateByUrl('/home');
-        }, 3000)        
+        }, 2000)        
       },
       (error) => {
         this.hasError = true;
         if(error.status == 403){
           this.error = "Identifiant ou mot de passe incorrect"
         } else {
-          this.error = error.status;
+          this.error = error.message;
         }
         
       }

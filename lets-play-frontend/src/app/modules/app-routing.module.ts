@@ -5,6 +5,7 @@ import { SingleAdComponent } from '../ad-components/single-ad/single-ad.componen
 import { SearchComponent } from '../search/search.component';
 import { LoginComponent } from '../authentication/login/login.component';
 import { SignupComponent } from '../authentication/signup/signup.component';
+import { ProfileComponent } from '../user/profile/profile.component';
 
 const routes: Routes = [
   { path: 'home', component: AdsListComponent },
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'search', component: SearchComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: SignupComponent},
+  { path: 'profile', component: ProfileComponent},
   { path: '', redirectTo: '/home', pathMatch: 'full' }
 ];
 
